@@ -1,0 +1,79 @@
+/* mix-ins, classes, variables */
+
+@bg-img: ~"url('static/img/static-tv-header.jpg')";
+@off-white: rgba(227, 227, 227, 255);
+@bg-pattern: ~"url('static/img/fabric_plaid.png')";
+
+.shadow {
+	moz-box-shadow: 0 0 15px #CCC;
+	-webkit-box-shadow: 0 0 15px #CCC;
+	box-shadow: 0 0 15px #CCC;
+}
+.img-bg {
+	background-image: @bg-img;
+}
+.circle {
+	border-radius: 50%;
+}
+.rounded-corners (@radius) {
+	-moz-border-radius: @radius;
+	-webkit-border-radius: @radius;
+	border-radius: @radius;
+}
+.borders (@radius, @color) {
+	border-style: solid;
+	border-width: @radius;
+	border-color: @color;
+}
+.logo-font {
+	font-family: "Arvo", serif;
+	color: #FFFFFF;
+	font-size: 40px;
+	font-weight: bold;
+	text-shadow: 2px 1px #000;
+}
+
+/* END mix-ins, classes, variables */
+
+body {
+	background-image: @bg-pattern;
+	font-family: "Open Sans", "Helvetica", sans-serif;
+	font-size: 14px;
+	height: 100%;
+}
+h1, h2, h3, h4 {
+	font-family: "Arvo", "Helvetica", sans-serif;
+}
+#content {
+	margin: auto;
+	clear: both;
+	.rounded-corners(10px);
+}
+#inner-circle {
+	float: right;
+	width: 160px;
+	height: 160px;
+	position: relative;
+	top: -475px;
+	right: -100px;
+	.borders(5px, #FFFFFF);
+	.img-bg;
+	.circle;
+	.shadow;
+	p {
+		.logo-font;
+		text-align: center;
+		position: relative;
+		top: 48%;
+	}
+}
+#wrapper {
+	width: 700px;
+	height: 400px;
+	margin-top: 15%;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 20px;
+	background-color: #FFFFFF;
+	.rounded-corners(10px);
+}
