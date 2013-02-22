@@ -1,0 +1,115 @@
+body {
+	background-image: url('fabric_plaid.png');
+	font-family: "Open Sans", "Helvetica", sans-serif;
+	font-size: 16px;
+	height: 100%;
+	overflow: auto;
+}
+
+h1, h2, h3, h4 {
+	font-family: "Arvo", "Helvetica", sans-serif;
+	text-align: center;
+}
+
+footer {
+	text-align: center;
+}
+
+a, a:visited {
+	color: #816687;
+}
+
+a:hover {
+	color: #CCC;
+	text-decoration: none;
+}
+
+img {
+	border-radius: 4px;
+}
+
+.logo {
+	float: left;
+	clear: both;
+	z-index: 1;
+	position: relative;
+	top: -93px;
+	left: 6%;
+	border-style: solid;
+	border-width: 5px;
+	border-color: #FFFFFF;
+	border-radius: 50%;
+	moz-box-shadow: 0 0 15px #CCC;
+	-webkit-box-shadow: 0 0 15px #CCC;
+	box-shadow: 0 0 15px #CCC;
+}
+
+.wrapper {
+	position: relative;
+	width: 70%;
+	height: 100%;
+	margin-top: 120px;
+	margin-right: auto;
+	margin-left: auto;
+	padding: 10px;
+	background-color: #FFFFFF;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	border-radius: 10px;
+}
+
+.first-row {
+	margin: auto;
+	line-height: 2;
+}
+
+.first-row span:first-child {
+	font-size: 1.3em;
+	font-weight: bold;
+}
+
+.first-row span:nth-child(n+2) {
+	font-size: 1.25em;
+	font-style: italic;
+}
+
+.first-row 	p {
+	text-align: center;
+}
+
+.second-row img {
+	height: 175px;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 20px;
+	border-style: solid;
+	border-width: 1px;
+	border-color: #CCC;
+}
+
+@media only screen and (max-width: 490px) and (-webkit-min-device-pixel-ratio: 2) {
+	h1 {
+		line-height: 1;
+	}
+	footer {
+		line-height: 1;
+		padding-bottom: 10px;
+		font-size: .75em;
+	}
+
+	.logo {
+/*		position: absolute;
+		top: 10px;
+		left: 75px;
+		margin: auto;*/
+		display: none;
+	}
+
+	.wrapper {
+		width: 90%;
+		margin-top: 10px;
+		margin-bottom: 10px;
+		line-height: 1;
+	}
+}

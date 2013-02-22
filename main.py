@@ -4,7 +4,7 @@ import jinja2
 
 
 jinja_environment = jinja2.Environment(
-    loader=jinja2.FileSystemLoader(os.path.dirname(__file__)))
+  loader=jinja2.FileSystemLoader(os.path.dirname(__file__)))
 
 
 class MainPage(webapp2.RequestHandler):
