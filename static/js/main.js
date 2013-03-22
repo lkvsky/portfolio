@@ -1,46 +1,43 @@
 var Static = (function() {
-  function PaintCanvas(height, width, el) {
+  function PaintCanvas(height, width, ctx) {
     var that = this;
 
-    that.canvas = el;
-
-    that.ctx = that.canvas.getContext("2d");
 
     that.initialize = function() {
-      that.canvas.height = height;
-      that.canvas.width = width;
-      that.fillCanvas();
+      ctx.canvas.height = height;
+      ctx.canvas.width = width;
+      setTimeout(that.fillCanvas, 255);
       that.canvasHover();
     };
 
-    that.generateShade = function() {
-      var rand = Math.floor(Math.random() * 255);
-
-      return "rgb(" + rand + ", " + rand + ", " + rand + ")";
-    };
-
     that.fillCanvas = function() {
-      that.ctx.clearRect(0, 0, 160, 160);
-      that.ctx.beginPath();
+      var imageData = ctx.getImageData(0, 0, width, height);
 
       for (var i=0; i<width; i++) {
         for (var j=0; j<height; j++) {
-          that.ctx.fillStyle = that.generateShade();
+          var shade = Math.floor(Math.random() * 255);
 
-          that.ctx.fillRect(i, j, 1, 1);
+          index = (i + j * width) * 4;
+          imageData.data[index] = shade;
+          imageData.data[index+1] = shade;
+          imageData.data[index+2] = shade;
+          imageData.data[index+3] = 255;
         }
       }
+
+      ctx.putImageData(imageData, 0, 0);
       that.drawText();
     };
 
     that.drawText = function() {
-      that.ctx.fillStyle = "white";
-      that.ctx.font = "bold 35pt Arvo";
-      that.ctx.fillText("{kwl}", 12, 100);
+      ctx.beginPath();
+      ctx.fillStyle = "white";
+      ctx.font = "bold 35pt Arvo";
+      ctx.fillText("{kwl}", 12, 100);
     };
 
     that.canvasHover = function() {
-      $(that.canvas).hover(function() {
+      $(ctx.canvas).hover(function() {
         that.interval = setInterval(that.fillCanvas, 100/33);
       }, function() {
         clearInterval(that.interval);
@@ -55,6 +52,7 @@ var Static = (function() {
 
 (function() {
   var mainCanvas = document.getElementsByClassName("logo")[0];
-  var paintCanvas = new Static.PaintCanvas(160, 160, mainCanvas);
+  var ctx = mainCanvas.getContext("2d");
+  var paintCanvas = new Static.PaintCanvas(160, 160, ctx);
   paintCanvas.initialize();
 })();
