@@ -1,12 +1,14 @@
 require.config({
 
   paths: {
-    jquery: 'lib/jquery-1-8-0-min'
+    jquery: 'lib/jquery-1-8-0-min',
+    text: 'lib/text',
+    handlebars: 'lib/handlebars'
   }
 
 });
 
-require(['modules/canvas_view'], function(CanvasView){
-  var logo = new CanvasView();
-  logo.initialize();
+require(['modules/app'], function(AppView){
+  var app = new AppView();
+  app.initialize();
 });
