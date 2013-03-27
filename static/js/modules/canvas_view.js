@@ -17,9 +17,9 @@ define(['jquery', 'modules/globals'], function($, globals) {
           var shade = Math.floor(Math.random() * 255);
 
           index = (i + j * globals.width) * 4;
-          imageData.data[index] = shade;
-          imageData.data[index+1] = shade;
-          imageData.data[index+2] = shade;
+          imageData.data[index] = Math.floor(Math.random() * 255);//shade;
+          imageData.data[index+1] = Math.floor(Math.random() * 255);//shade;
+          imageData.data[index+2] = Math.floor(Math.random() * 255);//shade;
           imageData.data[index+3] = 255;
         }
       }
@@ -30,7 +30,7 @@ define(['jquery', 'modules/globals'], function($, globals) {
 
     that.drawText = function() {
       globals.ctx.beginPath();
-      globals.ctx.fillStyle = "white";
+      globals.ctx.fillStyle = "#F8F8F8";
       globals.ctx.font = "bold 35pt Arvo";
       globals.ctx.fillText("KWL", 18, 100);
     };

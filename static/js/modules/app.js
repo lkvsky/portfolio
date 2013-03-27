@@ -37,6 +37,7 @@ define(['jquery',
         that.toggle($("#about-me"), that.renderSection(aboutTpl));
         that.toggle($("#projects"), that.renderSection(projectsTpl));
         that.toggle($("#professional"), that.renderSection(professionalTpl));
+        $(window).resize(that.growContentBox);
       };
 
       that.toggle = function(section, content) {
