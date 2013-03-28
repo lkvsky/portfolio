@@ -17,9 +17,9 @@ define(['jquery', 'modules/globals'], function($, globals) {
           var shade = Math.floor(Math.random() * 255);
 
           index = (i + j * globals.width) * 4;
-          imageData.data[index] = Math.floor(Math.random() * 255);//shade;
-          imageData.data[index+1] = Math.floor(Math.random() * 255);//shade;
-          imageData.data[index+2] = Math.floor(Math.random() * 255);//shade;
+          imageData.data[index] = /*Math.floor(Math.random() * 255);//*/shade;
+          imageData.data[index+1] = /*Math.floor(Math.random() * 255);//*/shade;
+          imageData.data[index+2] = /*Math.floor(Math.random() * 255);//*/shade;
           imageData.data[index+3] = 255;
         }
       }

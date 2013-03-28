@@ -11,8 +11,8 @@ define(['jquery',
       that.initialize = function() {
         that.renderLogo();
         $(".content").html(that.renderSection(aboutTpl));
-        that.growContentBox();
         that.installListeners();
+        that.growContentBox();
       };
 
       that.renderSection = function(tpl) {
@@ -46,9 +46,10 @@ define(['jquery',
 
           if (content) {
             $(".content").html(content);
-            that.growContentBox();
             $(this).addClass("active");
           }
+
+          that.growContentBox();
         });
       };
     };

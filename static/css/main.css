@@ -1,7 +1,20 @@
 /* general styling */
 
+/*
+colors to try: ;
+
+Dark Blue: core - #425d77, lighter - #507091, darker - #263545;
+Dark Purple: core - #77425d, lighter - #905071, darker - #5e3449;
+Dark Green: core - #5d7742, lighter - #719050, darker - #495e34;
+
+Light Blue: core - #85c4da, lighter - #c1e1ec, darker - #49a7c8;
+Light Purple: core - #da85c4, lighter - #ecc1e1, darker - #c849a7;
+Light Green: core - #85da9b, lighter - #c1eccc, darker - #49c86a;
+
+*/
+
 body {
-	background-color: #dfe6ed;
+	background-color: #dff0f5;
 	font-family: "Open Sans", "Helvetica", sans-serif;
 	height: 100%;
 	overflow: auto;
@@ -12,37 +25,33 @@ h1, h2, h3, h4 {
 	text-align: center;
 }
 
-h2, h3, h4 {
-	margin: 5px;
-}
-
-header h1 {
+h1 {
 	margin: 0;
 }
 
 header {
-	background: #425d77;
-	border-bottom: 10px solid #263545;
-	border-left: 5px solid #507091;
-	border-right: 5px solid #507091;
-	border-top: 5px solid #507091;
+	background: #85c4da;
+	border-bottom: 10px solid #49a7c8;
+	border-left: 5px solid #c1e1ec;
+	border-right: 5px solid #c1e1ec;
+	border-top: 5px solid #c1e1ec;
 	color: #F8F8F8;
 	margin-top: 0;
 	padding: 10px;
 }
 
 a, a:visited {
-	color: #000000;
+	color: #85da9b;
 	text-decoration: none;
-	-webkit-transition: text-decoration 0.5s;
-	-moz-transition: text-decoration 0.5s;
-	-ms-transition: text-decoration 0.5s;
-	-o-transition: text-decoration 0.5s;
+	-webkit-transition: color 0.5s;
+	-moz-transition: color 0.5s;
+	-ms-transition: color 0.5s;
+	-o-transition: color 0.5s;
 }
 
 a:hover {
-	color: #000000;
-	text-decoration: underline;
+	color: #da85c4;
+	text-decoration: none;
 }
 
 p {
@@ -91,10 +100,6 @@ p {
 }
 
 #grow {
-/*	border-top: 5px solid #425d77;
-	border-left: 5px solid #507091;
-	border-right: 5px solid #507091;
-	border-bottom: 5px solid #425d77;*/
   -moz-transition: height .5s;
   -ms-transition: height .5s;
   -o-transition: height .5s;
@@ -108,18 +113,30 @@ p {
 	padding: 0px 10px 10px 10px;
 }
 
+.shadow {
+-webkit-box-shadow: 0px 0px 5px #CCC;
+-moz-box-shadow:    0px 0px 5px #CCC;
+box-shadow:         0px 0px 5px #CCC;
+}
+
 /* about me section */
 
 .about-me-content {
 	padding: 10px;
 }
 
+.about-me h2, .about-me h3 {
+	text-align: left;
+}
+
 .about-me img {
 	float: right;
 	display: inline-block;
-	margin-left: 10px;
+	margin-left: 5px;
+	margin-bottom: 5px;
 	margin-top: 10px;
-	width: 200px;
+	width: 250px;
+	border: 1px solid #CCC;
 }
 
 /* projects section */
@@ -154,10 +171,6 @@ p {
 	-o-transition: opacity 0.5s;
 }
 
-.project-info a, .project-info a:visited {
-	color: #425d77;
-}
-
 .project-info-content {
 	padding: 10px;
 	text-align: left;
@@ -176,6 +189,13 @@ p {
 	margin-bottom: 10px;
 }
 
+p.title {
+	text-align: center;
+	margin-bottom: 5px;
+	font-weight: bold;
+	font-size: 1.25em;
+}
+
 /* navigation */
 
 .logo {
@@ -183,7 +203,7 @@ p {
 	background-color: #F8F8F8;
 	height: 160px;
 	width: 160px;
-	border: 5px solid #77425d;
+	border: 8px solid #F8F8F8;
 	border-radius: 50%;
 }
 
@@ -211,9 +231,9 @@ p {
 	padding-bottom: 8px;
 	font-weight: bold;
 	min-width: 150px;
-	background: #77425d;
-	border-left: 5px solid #905071;
-	border-bottom: 5px solid #5e3449;
+	background: #85da9b;
+	border-left: 5px solid #c1eccc;
+	border-bottom: 5px solid #49c86a;
 }
 
 .nav-transition li {
@@ -226,12 +246,12 @@ p {
 .nav li:hover, li.active {
 	color: #F8F8F8;
 	cursor: pointer;
-	background: #5d7742;
-	border-left: 5px solid #719050;
-	border-bottom: 5px solid #495e34;
+	background: #da85c4;
+	border-left: 5px solid #ecc1e1;
+	border-bottom: 5px solid #c849a7;
 }
 
-@media only screen and (max-width: 1040px) {
+@media only screen and (max-width: 1000px) {
 	.projects {
 		left: 10%;
 		max-width: 400px;
@@ -255,7 +275,7 @@ p {
 
 }
 
-@media only screen and (-webkit-min-device-pixel-ratio: 2) and (max-width: 600px) {
+@media only screen and (-webkit-min-device-pixel-ratio: 2) and (max-width: 620px) {
 
 	p {
 		line-height: 1.5em;
@@ -286,7 +306,7 @@ p {
 	}
 
 	.logo {
-		margin-left: 30%;
+		margin-left: 31%;
 	}
 
 	li.rotate {
@@ -297,7 +317,13 @@ p {
 	}
 
 	.projects {
-		left: 10%;
+		left: 8%;
+		/*line-height: 0.6em;*/
+	}
+
+	.project-info {
+		height: 257px;
+		bottom: 10px;
 	}
 
 	.wrapper {
@@ -305,6 +331,33 @@ p {
 		margin-left: auto;
 		margin-right: auto;
 		margin-bottom: 10px;
-		line-height: 1;
+	}
+
+	.about-me img {
+		width: 150px;
+	}
+}
+
+@media only screen and (-webkit-min-device-pixel-ratio: 2) and (max-device-width: 480px) {
+	
+	.projects {
+		position: static;
+	}
+
+	.project-info {
+		height: 100%;
+	}
+
+	.logo {
+		margin-left: 20%;
+	}
+
+	.thumbnail {
+		height: 200px;
+		width: 250px;
+	}
+
+	.project-info {
+		width: 250px;
 	}
 }
