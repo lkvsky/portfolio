@@ -12,7 +12,7 @@ define(['jquery',
         that.renderLogo();
         $(".content").html(that.renderSection(aboutTpl));
         that.installListeners();
-        that.growContentBox();
+        setTimeout(that.growContentBox, 50);
       };
 
       that.renderSection = function(tpl) {
@@ -49,7 +49,7 @@ define(['jquery',
             $(this).addClass("active");
           }
 
-          that.growContentBox();
+          setTimeout(that.growContentBox, 50);
         });
       };
     };

@@ -196,6 +196,31 @@ p.title {
 	font-size: 1.25em;
 }
 
+/* professional */
+
+.job {
+	margin: 10px;
+	padding: 10px;
+}
+
+.company {
+	font-size: 1.5em;
+	font-weight: bold;
+}
+
+.job:nth-child(odd) {
+	text-align: left;
+}
+
+.job:nth-child(even) {
+	text-align: right;
+	background-color: #EEE;
+}
+
+.job-header {
+	margin-bottom: 10px;
+}
+
 /* navigation */
 
 .logo {
