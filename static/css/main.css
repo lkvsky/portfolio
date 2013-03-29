@@ -60,6 +60,12 @@ p {
 
 /* container and content styling */
 
+#canvas-background {
+	position: fixed;
+	top: 0;
+	z-index: -1;
+}
+
 .container {
 	max-width: 1050px;
 	width: 90%;
@@ -232,7 +238,7 @@ p.title {
 	border-radius: 50%;
 }
 
-.logo-static {
+#logo-static {
 	border-radius: 50%;
 }
 
@@ -331,7 +337,7 @@ p.title {
 	}
 
 	.logo {
-		margin-left: 31%;
+		margin-left: 28%;
 	}
 
 	li.rotate {
@@ -371,6 +377,10 @@ p.title {
 
 	.project-info {
 		height: 100%;
+	}
+
+	.nav li {
+		width: 28%;
 	}
 
 	.logo {

@@ -1,10 +1,11 @@
 define(['jquery',
         'handlebars',
-        'modules/canvas_view',
+        'modules/logo_view',
+        'modules/background_view',
         'text!templates/about_me.html',
         'text!templates/projects.html',
         'text!templates/professional.html'],
-  function($, Handlbars, CanvasView, aboutTpl, projectsTpl, professionalTpl) {
+  function($, Handlbars, LogoView, BackgroundView, aboutTpl, projectsTpl, professionalTpl) {
     var AppView = function() {
       var that = this;
 
@@ -13,6 +14,8 @@ define(['jquery',
         $(".content").html(that.renderSection(aboutTpl));
         that.installListeners();
         setTimeout(that.growContentBox, 50);
+
+        new BackgroundView().initialize();
       };
 
       that.renderSection = function(tpl) {
@@ -21,7 +24,7 @@ define(['jquery',
       };
 
       that.renderLogo = function() {
-        var logo = new CanvasView();
+        var logo = new LogoView();
         logo.initialize();
       };
 
