@@ -15,7 +15,6 @@ define(['jquery', 'modules/bubble'], function($, Bubble) {
     that.draw = function() {
       that.ctx.canvas.height = window.innerHeight;
       that.ctx.canvas.width = window.innerWidth;
-      console.log(that.ctx.canvas.height);
 
       for (var i = 0; i < that.bubbles.length; i++) {
         that.bubbles[i].draw();

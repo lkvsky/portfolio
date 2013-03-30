@@ -282,14 +282,14 @@ p.title {
 	border-bottom: 5px solid #c849a7;
 }
 
-@media only screen and (max-width: 1000px) {
+@media only screen and (max-width: 1070px) {
 	.projects {
 		left: 10%;
 		max-width: 400px;
 	}
 }
 
-@media only screen and (max-device-width: 1025px) and (-webkit-min-device-pixel-ratio: 2) {
+@media only screen and (max-device-width: 1025px) {
 
 	.project-info {
 		background-color: #F8F8F8;
@@ -306,7 +306,7 @@ p.title {
 
 }
 
-@media only screen and (-webkit-min-device-pixel-ratio: 2) and (max-width: 620px) {
+@media only screen and (max-width: 620px) {
 
 	p {
 		line-height: 1.5em;

@@ -32,6 +32,7 @@ define(['jquery'], function($) {
 
       if (that.y <= -(2 * that.radius)) {
         that.y = window.innerHeight + (2 * that.radius);
+        that.x = Math.floor(Math.random() * window.innerWidth);
       }
 
       that.y -= (0.5 * that.velocity.y);
