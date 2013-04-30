@@ -1,26 +1,28 @@
-define(['jquery'], function($) {
-  var LogoView = function() {
-    var that = this;
+define(['jquery', 'underscore', 'backbone'], function($, _, Backbone) {
+  var LogoView = Backbone.View.extend({
+    events: {
+      'mouseenter #logo-static': 'onHover',
+      'mouseleave #logo-static': 'offHover'
+    },
 
-    that.ctx = document.getElementById('logo-static').getContext("2d");
-    that.height = 160;
-    that.width = 160;
+    initialize: function() {
+      var canvas = $("#logo-static")[0];
 
-    that.initialize = function() {
-      that.ctx.canvas.height = that.height;
-      that.ctx.canvas.width = that.width;
-      setTimeout(that.fillCanvas, 255);
-      that.canvasHover();
-    };
+      this.ctx = canvas.getContext("2d");
+      this.ctx.canvas.height = 160;
+      this.ctx.canvas.width = 160;
 
-    that.fillCanvas = function() {
-      var imageData = that.ctx.getImageData(0, 0, that.width, that.height);
+      setTimeout(_.bind(this.render, this), 255);
+    },
 
-      for (var i=0; i<that.width; i++) {
-        for (var j=0; j<that.height; j++) {
+    render: function() {
+      var imageData = this.ctx.getImageData(0, 0, this.ctx.canvas.width, this.ctx.canvas.height);
+
+      for (var i=0; i<this.ctx.canvas.width; i++) {
+        for (var j=0; j<this.ctx.canvas.height; j++) {
           var shade = Math.floor(Math.random() * 255);
 
-          index = (i + j * that.width) * 4;
+          index = (i + j * this.ctx.canvas.width) * 4;
           imageData.data[index] = shade;
           imageData.data[index+1] = shade;
           imageData.data[index+2] = shade;
@@ -28,25 +30,27 @@ define(['jquery'], function($) {
         }
       }
 
-      that.ctx.putImageData(imageData, 0, 0);
-      that.drawText();
-    };
+      this.ctx.putImageData(imageData, 0, 0);
+      this.drawText();
+    },
 
-    that.drawText = function() {
-      that.ctx.beginPath();
-      that.ctx.fillStyle = "#F8F8F8";
-      that.ctx.font = "bold 35pt Arvo";
-      that.ctx.fillText("KWL", 18, 100);
-    };
+    drawText: function() {
+      this.ctx.beginPath();
+      this.ctx.fillStyle = "#F8F8F8";
+      this.ctx.font = "bold 35pt Arvo";
+      this.ctx.fillText("KWL", 18, 100);
+    },
 
-    that.canvasHover = function() {
-      $(that.ctx.canvas).hover(function() {
-        that.interval = setInterval(that.fillCanvas, 100/33);
-      }, function() {
-        clearInterval(that.interval);
-      });
-    };
-  };
+    onHover: function() {
+      this.interval = setInterval(_.bind(this.render, this), 100/33);
+    },
+
+    offHover: function() {
+      var that = this;
+
+      clearInterval(that.interval);
+    }
+  });
 
   return LogoView;
 });

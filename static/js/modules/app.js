@@ -15,7 +15,7 @@ define(['jquery',
         that.installListeners();
         setTimeout(that.growContentBox, 50);
 
-        new BackgroundView().initialize();
+        new BackgroundView({el: "#canvas-background"});
       };
 
       that.renderSection = function(tpl) {
@@ -24,8 +24,7 @@ define(['jquery',
       };
 
       that.renderLogo = function() {
-        var logo = new LogoView();
-        logo.initialize();
+        var logo = new LogoView({el: ".logo"});
       };
 
       that.growContentBox = function() {

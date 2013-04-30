@@ -3,7 +3,20 @@ require.config({
   paths: {
     jquery: 'lib/jquery-1-8-0-min',
     text: 'lib/text',
-    handlebars: 'lib/handlebars'
+    handlebars: 'lib/handlebars',
+    backbone: 'lib/backbone',
+    underscore: 'lib/underscore'
+  },
+
+  shim: {
+    'backbone': {
+      deps: ['underscore', 'jquery'],
+      exports: 'Backbone'
+    },
+
+    'underscore': {
+      exports: '_'
+    }
   }
 
 });

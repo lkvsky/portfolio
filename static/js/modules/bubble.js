@@ -1,44 +1,46 @@
-define(['jquery'], function($) {
-  var Bubble = function(options) {
-    var that = this;
+define(['jquery', 'underscore', 'backbone'], function($, _, Backbone) {
+  var Bubble = Backbone.View.extend({
 
-    that.x = options.x;
-    that.y = options.y;
-    that.radius = options.radius;
-    that.velocity = options.velocity;
+    initialize: function() {
+      this.ctx = this.options.ctx;
+      this.velocity = this.options.velocity;
+      this.x = this.options.x;
+      this.y = this.options.y;
+      this.radius = this.options.radius;
+    },
 
-    that.draw = function() {
-      that.update();
-      that.drawBubble();
-    };
+    render: function() {
+      this.update();
+      this.drawBubble();
+    },
 
-    that.drawBubble = function() {
-      options.ctx.beginPath();
-      options.ctx.strokeStyle = "rgba(255, 255, 255, 1)";
-      options.ctx.fillStyle = "rgba(255, 255, 255, 0.5)";
-      options.ctx.arc(that.x, that.y, that.radius, 0, Math.PI*2, true);
-      options.ctx.closePath();
-      options.ctx.fill();
-      options.ctx.stroke();
-    };
+    drawBubble: function() {
+      this.ctx.beginPath();
+      this.ctx.strokeStyle = "rgba(255, 255, 255, 1)";
+      this.ctx.fillStyle = "rgba(255, 255, 255, 0.5)";
+      this.ctx.arc(this.x, this.y, this.radius, 0, Math.PI*2, true);
+      this.ctx.closePath();
+      this.ctx.fill();
+      this.ctx.stroke();
+    },
 
-    that.update = function() {
-      var lowerBound = options.x - (2 * that.radius);
-      var upperBound = options.x + (2 * that.radius);
+    update: function() {
+      var lowerBound = this.x - (2 * this.radius);
+      var upperBound = this.x + (2 * this.radius);
 
-      if (that.x <= lowerBound || that.x >= upperBound || that.radius >= 80) {
-        that.velocity.x *= -1;
+      if (this.x <= lowerBound || this.x >= upperBound || this.radius >= 80) {
+        this.velocity.x *= -1;
       }
 
-      if (that.y <= -(2 * that.radius)) {
-        that.y = window.innerHeight + (2 * that.radius);
-        that.x = Math.floor(Math.random() * window.innerWidth);
+      if (this.y <= -(2 * this.radius)) {
+        this.y = window.innerHeight + (2 * this.radius);
+        this.x = Math.floor(Math.random() * window.innerWidth);
       }
 
-      that.y -= (0.5 * that.velocity.y);
-      that.x += (0.3 * that.velocity.x);
-    };
-  };
+      this.y -= (0.5 * this.velocity.y);
+      this.x += (0.3 * this.velocity.x);
+    }
+  });
 
   return Bubble;
 });
