@@ -22,6 +22,5 @@ require.config({
 });
 
 require(['modules/app'], function(AppView){
-  var app = new AppView();
-  app.initialize();
+  new AppView();
 });

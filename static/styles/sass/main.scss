@@ -1,0 +1,411 @@
+$blue: #85c4da;
+$blue_dark: #49a7c8;
+$blue_light: #c1e1ec;
+
+$pink: #da85c4;
+$pink_dark: #c849a7;
+$pink_light: #ecc1e1;
+
+$green: #85da9b;
+$green_dark: #49c86a;
+$green_light: #c1eccc;
+
+$body_background: #dff0f5;
+$white_text: #f8f8f8;
+
+@mixin transition($property: all, $duration: 0.3s) {
+  -moz-transition: $property $duration;
+  -webkit-transition: $property $duration;
+  -o-transition: $property $duration;
+  -ms-transition: $property $duration;
+  transition: $property $duration;
+}
+
+@mixin transform($value) {
+  -webkit-transform: $value;
+  -moz-transform: $value;
+  -o-transform: $value;
+  -ms-transform: $value;
+  transform: $value;
+}
+
+@mixin box_shadow($value) {
+  -webkit-box-shadow: $value;
+  -moz-box-shadow: $value;
+  -ms-box-shadow: $value;
+  box-shadow: $value;
+}
+
+body {
+  background-color: $body_background;
+  font-family: "Open Sans", "Helvetica", sans-serif;
+  height: 100%;
+  overflow: auto;
+  @include transition(all);
+}
+
+h1, h2, h3, h4 {
+  font-family: "Arvo", "Helvetica", sans-serif;
+  text-align: center;
+}
+
+h1 {
+  margin: 0;
+  color: $white_text;
+}
+
+header {
+  background: $blue;
+  border-bottom: 10px solid $blue_dark;
+  border-left: 5px solid $blue_light;
+  border-right: 5px solid $blue_light;
+  border-top: 5px solid $blue_light;
+  color: #F8F8F8;
+  margin-top: 0;
+  padding: 10px;
+}
+
+a {
+  color: $green;
+  text-decoration: none;
+  @include transition(color);
+
+  &:visited {
+    color: $green;
+  }
+
+  &:hover {
+    color: $pink;
+    text-decoration: none;
+  }
+}
+
+p {
+  margin: 0;
+
+  &.title {
+    text-align: center;
+    margin-bottom: 5px;
+    font-weight: bold;
+    font-size: 1.25em;
+  }
+}
+
+/* container and content styling */
+
+#canvas-background {
+  position: fixed;
+  top: 0;
+  z-index: -1;
+}
+
+.container {
+  max-width: 940px;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 5%;
+  opacity: 0;
+  @include transition(opacity);
+}
+
+.loaded {
+  opacity: 1 !important;
+}
+
+.clearfix {
+  display: block;
+}
+
+.rotate {
+  @include transform(rotate(-15deg));
+}
+
+.clearfix:after {
+   visibility: hidden;
+   display: block;
+   font-size: 0;
+   line-height: 0;
+   content: " ";
+   clear: both;
+   height: 0;
+   width: 0;
+ }
+
+.wrapper {
+  float: right;
+  clear: both;
+  position: relative;
+  width: 70%;
+  background-color: #F8F8F8;
+  margin-bottom: 10px;
+}
+
+#grow {
+  @include transition(height);
+  overflow: hidden;
+}
+
+.content {
+  min-height: 350px;
+  padding: 0px 10px 10px 10px;
+}
+
+.shadow {
+  @include box_shadow(0px 0px 5px #CCC);
+}
+
+/* about me section */
+
+.about-me-content {
+  padding: 10px;
+}
+
+.about-me h2, .about-me h3 {
+  text-align: left;
+}
+
+.about-me img {
+  float: right;
+  display: inline-block;
+  margin-left: 5px;
+  margin-bottom: 5px;
+  margin-top: 10px;
+  width: 250px;
+  border: 1px solid #CCC;
+}
+
+/* projects section */
+
+.thumbnail {
+  display: inline-block;
+  margin: 10px;
+  height: 250px;
+  width: 300px;
+  border: solid 1px #CCC;
+}
+
+.project {
+  position: relative;
+  float: left;
+  margin: auto;
+}
+
+.project-info {
+  background-color: black;
+  color: white;
+  height: 253px;
+  width: 302px;
+  overflow: hidden;
+  position: absolute;
+  bottom: 14px;
+  left: 10px;
+  opacity: 0;
+  @include transition(opacity);
+}
+
+.project-info-content {
+  padding: 10px;
+  text-align: left;
+}
+
+.project-info:hover {
+  opacity: 0.8;
+}
+
+.projects {
+  position: relative;
+  left: 4%;
+  margin-top: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 10px;
+}
+
+/* professional */
+
+.job {
+  margin: 10px;
+  padding: 10px;
+}
+
+.company {
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+.job:nth-child(odd) {
+  text-align: left;
+}
+
+.job:nth-child(even) {
+  text-align: right;
+  background-color: #EEE;
+}
+
+.job-header {
+  margin-bottom: 10px;
+}
+
+/* navigation */
+
+.logo {
+  display: inline-block;
+  background-color: $white_text;
+  height: 160px;
+  width: 160px;
+  border: 8px solid $white_text;
+  border-radius: 50%;
+}
+
+#logo-static {
+  border-radius: 50%;
+}
+
+.nav-wrapper {
+  width: 25%;
+  display: inline-block;
+}
+
+.nav-transition li {
+  @include transition(all);
+}
+
+.nav {
+  list-style-type: none;
+  text-align: center;
+  position: relative;
+  right: 40px;
+
+  li {
+    list-style: none;
+    margin: 10px;
+    color: $white_text;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    font-weight: bold;
+    min-width: 150px;
+    background: $green;
+    border-left: 5px solid $green_light;
+    border-bottom: 5px solid $green_dark;
+
+    &:hover, &.active {
+      color: $white_text;
+      cursor: pointer;
+      background: $pink;
+      border-left: 5px solid $pink_light;
+      border-bottom: 5px solid $pink_dark;
+    }
+  }
+}
+
+@media only screen and (max-width: 1070px) {
+  .projects {
+    left: 10%;
+    max-width: 400px;
+  }
+}
+
+@media only screen and (max-device-width: 1025px) {
+
+  .project-info {
+    background-color: $white_text;
+    color: black;
+    opacity: 1;
+    position: relative;
+    margin-top: 10px;
+    height: 100%;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+}
+
+@media only screen and (max-width: 620px) {
+
+  p {
+    line-height: 1.5em;
+  }
+
+  .container {
+    width: 99%;
+    margin-top: 10px
+  }
+
+  .nav-wrapper {
+    margin: 0;
+    width: 100%;
+  }
+
+  .nav {
+    padding: 0;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    position: static;
+
+    li {
+      display: inline-block;
+      margin: 0;
+      min-width: 0;
+      width: 31%;
+    }
+  }
+
+  .logo {
+    margin-left: 28%;
+  }
+
+  li.rotate {
+    @include transform(rotate(0deg));
+  }
+
+  .projects {
+    left: 8%;
+  }
+
+  .project-info {
+    height: 257px;
+    bottom: 10px;
+  }
+
+  .wrapper {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10px;
+  }
+
+  .about-me img {
+    width: 150px;
+  }
+}
+
+@media only screen and (-webkit-min-device-pixel-ratio: 2) and (max-device-width: 480px) {
+
+  .projects {
+    position: static;
+  }
+
+  .project-info {
+    height: 100%;
+  }
+
+  .nav li {
+    width: 28%;
+  }
+
+  .logo {
+    margin-left: 20%;
+  }
+
+  .thumbnail {
+    height: 200px;
+    width: 250px;
+  }
+
+  .project-info {
+    width: 250px;
+  }
+}

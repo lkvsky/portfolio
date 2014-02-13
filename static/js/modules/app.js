@@ -6,55 +6,82 @@ define(['jquery',
         'text!templates/projects.html',
         'text!templates/professional.html'],
   function($, Handlbars, LogoView, BackgroundView, aboutTpl, projectsTpl, professionalTpl) {
-    var AppView = function() {
-      var that = this;
 
-      that.initialize = function() {
-        that.renderLogo();
-        $(".content").html(that.renderSection(aboutTpl));
-        that.installListeners();
-        setTimeout(that.growContentBox, 50);
+    var AppView = Backbone.View.extend({
 
-        new BackgroundView({el: "#canvas-background"});
-      };
+      compiledHtml: {},
 
-      that.renderSection = function(tpl) {
+      initialize: function() {
+        var self = this;
+
+        self.createElements();
+        self.attachEvents();
+        self.renderLogo();
+        new BackgroundView({el: '#canvas-background'});
+
+        self.container.addClass('loaded');
+      },
+
+      createElements: function() {
+        var self = this;
+
+        self.container = $('.container');
+        self.menu = $('.nav li');
+        self.grow = $('#grow');
+        self.content = $('.content');
+        self.about_me = $('#about-me');
+        self.projects = $('#projects');
+        self.professional = $('#professional');
+      },
+
+      attachEvents: function() {
+        var self = this;
+
+        self.toggle(self.about_me, aboutTpl);
+        self.toggle(self.projects, projectsTpl);
+        self.toggle(self.professional,  professionalTpl);
+        $(window).resize(_.bind(self.growContentBox, self));
+      },
+
+      compileSection: function(tpl) {
         var compiled = Handlebars.compile(tpl);
+
         return compiled();
-      };
+      },
 
-      that.renderLogo = function() {
-        var logo = new LogoView({el: ".logo"});
-      };
+      renderLogo: function() {
+        new LogoView({el: '.logo'});
+      },
 
-      that.growContentBox = function() {
-        var grow = $('#grow');
-        var content = $('.content');
-        var contentHeight = content.outerHeight();
+      growContentBox: function() {
+        var self = this,
+            grow = self.grow,
+            contentHeight = self.content.outerHeight();
 
-        grow[0].style.height = contentHeight + "px";
-      };
+        grow[0].style.height = contentHeight + 'px';
+      },
 
-      that.installListeners = function() {
-        that.toggle($("#about-me"), that.renderSection(aboutTpl));
-        that.toggle($("#projects"), that.renderSection(projectsTpl));
-        that.toggle($("#professional"), that.renderSection(professionalTpl));
-        $(window).resize(that.growContentBox);
-      };
+      toggle: function(toggle, template) {
+        var self = this;
 
-      that.toggle = function(section, content) {
-        section.click(function() {
-          $(".nav li").removeClass("active");
+        toggle.click(self.onShowSection.bind(self, toggle, template));
+      },
 
-          if (content) {
-            $(".content").html(content);
-            $(this).addClass("active");
-          }
+      onShowSection: function(toggle, template) {
+        var self = this,
+            key = toggle.attr('id');
 
-          setTimeout(that.growContentBox, 50);
-        });
-      };
-    };
+        self.menu.removeClass('active');
+        toggle.addClass('active');
+
+        if (!self.compiledHtml[key]) {
+          self.compiledHtml[key] = self.compileSection(template);
+        }
+
+        self.content.html(self.compiledHtml[key]);
+        setTimeout(_.bind(self.growContentBox, self), 50);
+      }
+    });
 
     return AppView;
   });

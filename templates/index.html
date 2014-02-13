@@ -7,7 +7,7 @@
 		<link href='http://fonts.googleapis.com/css?family=Arvo:400,700' rel='stylesheet' type='text/css'>
 		<link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,400,700' rel='stylesheet' type='text/css'>
 		{% if debug %}
-		<link rel="stylesheet" type="text/css" href="static/css/main.css">
+		<link rel="stylesheet" type="text/css" href="static/styles/css/main.css">
 		<script data-main="static/js/main" src="static/js/lib/require.js"></script>
 		{% else %}
 		<link rel="stylesheet" type="text/css" href="static/build/main.min.css">
@@ -26,7 +26,7 @@
 					</a>
 				</div>
 				<ul class="nav nav-transition">
-					<li id="about-me" class="rotate shadow">Me</li>
+					<li id="about-me" class="rotate shadow active">Me</li>
 					<li id="projects" class="rotate shadow">My Work</li>
 					<li id="professional" class="rotate shadow">My Career</li>
 				</ul>
@@ -37,7 +37,9 @@
 				</header>
 				<div id="grow">
 					<div class="content">
-						{% block body %}{% endblock %}
+						{% block body %}
+						{% include 'about_me.html' %}
+						{% endblock %}
 					</div>
 				</div>
 			</div>

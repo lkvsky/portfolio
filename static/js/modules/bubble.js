@@ -2,43 +2,51 @@ define(['jquery', 'underscore', 'backbone'], function($, _, Backbone) {
   var Bubble = Backbone.View.extend({
 
     initialize: function() {
-      this.ctx = this.options.ctx;
-      this.velocity = this.options.velocity;
-      this.x = this.options.x;
-      this.y = this.options.y;
-      this.radius = this.options.radius;
+      var self = this,
+          options = self.options;
+
+      self.ctx = options.ctx;
+      self.velocity = options.velocity;
+      self.x = options.x;
+      self.y = options.y;
+      self.radius = options.radius;
     },
 
     render: function() {
-      this.update();
-      this.drawBubble();
+      var self = this;
+
+      self.update();
+      self.drawBubble();
     },
 
     drawBubble: function() {
-      this.ctx.beginPath();
-      this.ctx.strokeStyle = "rgba(255, 255, 255, 1)";
-      this.ctx.fillStyle = "rgba(255, 255, 255, 0.5)";
-      this.ctx.arc(this.x, this.y, this.radius, 0, Math.PI*2, true);
-      this.ctx.closePath();
-      this.ctx.fill();
-      this.ctx.stroke();
+      var ctx = this.ctx;
+
+      ctx.beginPath();
+      ctx.strokeStyle = "rgba(255, 255, 255, 1)";
+      ctx.fillStyle = "rgba(255, 255, 255, 0.5)";
+      ctx.arc(this.x, this.y, this.radius, 0, Math.PI*2, true);
+      ctx.closePath();
+      ctx.fill();
+      ctx.stroke();
     },
 
     update: function() {
-      var lowerBound = this.x - (2 * this.radius);
-      var upperBound = this.x + (2 * this.radius);
+      var self = this,
+          lowerBound = self.x - (2 * self.radius),
+          upperBound = self.x + (2 * self.radius);
 
-      if (this.x <= lowerBound || this.x >= upperBound || this.radius >= 80) {
-        this.velocity.x *= -1;
+      if (self.x <= lowerBound || self.x >= upperBound || self.radius >= 80) {
+        self.velocity.x *= -1;
       }
 
-      if (this.y <= -(2 * this.radius)) {
-        this.y = window.innerHeight + (2 * this.radius);
-        this.x = Math.floor(Math.random() * window.innerWidth);
+      if (self.y <= -(2 * self.radius)) {
+        self.y = window.innerHeight + (2 * self.radius);
+        self.x = Math.floor(Math.random() * window.innerWidth);
       }
 
-      this.y -= (0.5 * this.velocity.y);
-      this.x += (0.3 * this.velocity.x);
+      self.y -= (0.5 * self.velocity.y);
+      self.x += (0.3 * self.velocity.x);
     }
   });
 
