@@ -1,12 +1,12 @@
-$blue: #85c4da;
+$blue: rgba(133, 196, 218, 0.7);
 $blue_dark: #49a7c8;
 $blue_light: #c1e1ec;
 
-$pink: #da85c4;
+$pink: rgba(218, 133, 196, 0.7);
 $pink_dark: #c849a7;
 $pink_light: #ecc1e1;
 
-$green: #85da9b;
+$green: rgba(133, 218, 155, 0.7);
 $green_dark: #49c86a;
 $green_light: #c1eccc;
 
@@ -36,33 +36,48 @@ $white_text: #f8f8f8;
   box-shadow: $value;
 }
 
+@mixin box_sizing($value: border-box) {
+  -webkit-box-sizing: $value;
+  -moz-box-sizing: $value;
+  -ms-box-sizing: $value;
+  box-sizing: $value;
+}
+
 body {
   background-color: $body_background;
   font-family: "Open Sans", "Helvetica", sans-serif;
   height: 100%;
   overflow: auto;
+  margin: 0;
+  width: 100%;
   @include transition(all);
 }
 
 h1, h2, h3, h4 {
   font-family: "Arvo", "Helvetica", sans-serif;
+  margin: 0 10px 0 10px;
+  display: inline-block;
+}
+
+.intro {
+  font-size: 2em;
   text-align: center;
 }
 
-h1 {
-  margin: 0;
-  color: $white_text;
+header {
+  @include box_sizing;
+  background: $blue;
+  height: 100px;
+  overflow: visible;
+  color: #F8F8F8;
+  margin: 0 0 100px 0;
+  width: 100%;
 }
 
-header {
-  background: $blue;
-  border-bottom: 10px solid $blue_dark;
-  border-left: 5px solid $blue_light;
-  border-right: 5px solid $blue_light;
-  border-top: 5px solid $blue_light;
-  color: #F8F8F8;
-  margin-top: 0;
-  padding: 10px;
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none outside none;
 }
 
 a {
@@ -99,26 +114,19 @@ p {
   z-index: -1;
 }
 
-.container {
-  max-width: 940px;
-  width: 90%;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 5%;
-  opacity: 0;
-  @include transition(opacity);
-}
-
-.loaded {
-  opacity: 1 !important;
-}
-
 .clearfix {
   display: block;
 }
 
 .rotate {
-  @include transform(rotate(-15deg));
+  @include transform(rotate(-20deg));
+}
+
+.container {
+  margin: 0 auto 0 auto;
+  max-width: 940px;
+  position: relative;
+  margin-bottom: 10px;
 }
 
 .clearfix:after {
@@ -132,23 +140,13 @@ p {
    width: 0;
  }
 
-.wrapper {
-  float: right;
-  clear: both;
-  position: relative;
-  width: 70%;
-  background-color: #F8F8F8;
-  margin-bottom: 10px;
-}
-
-#grow {
-  @include transition(height);
+.box {
+  display: table;
+  padding: 30px;
+  background-color: rgba(255, 255, 255, 0.7);
+  border: 2px solid #FFFFFF;
+  margin: 0 auto 50px auto;
   overflow: hidden;
-}
-
-.content {
-  min-height: 350px;
-  padding: 0px 10px 10px 10px;
 }
 
 .shadow {
@@ -157,101 +155,65 @@ p {
 
 /* about me section */
 
-.about-me-content {
-  padding: 10px;
-}
-
-.about-me h2, .about-me h3 {
-  text-align: left;
-}
-
-.about-me img {
-  float: right;
-  display: inline-block;
-  margin-left: 5px;
-  margin-bottom: 5px;
-  margin-top: 10px;
-  width: 250px;
-  border: 1px solid #CCC;
-}
-
-/* projects section */
-
-.thumbnail {
-  display: inline-block;
-  margin: 10px;
-  height: 250px;
-  width: 300px;
-  border: solid 1px #CCC;
-}
-
-.project {
+.vimeo_logo {
+  height: 100px;
   position: relative;
-  float: left;
-  margin: auto;
+  top: 30px;
 }
 
-.project-info {
-  background-color: black;
-  color: white;
-  height: 253px;
-  width: 302px;
+.butter {
+  @include box_sizing;
+  width: 100%;
+}
+
+.theatre {
+  margin-top: 30px;
+  position: relative;
+  padding-bottom: 53%;
+  padding-top: 30px;
+  height: 0;
   overflow: hidden;
+}
+
+.player {
+  background-color: rgba(0, 0, 0, 0.5);
   position: absolute;
-  bottom: 14px;
-  left: 10px;
-  opacity: 0;
-  @include transition(opacity);
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }
 
-.project-info-content {
+.more-butter {
+  @include transition(background-color);
+  display: table;
+  cursor: pointer;
+  font-family: "Arvo", "Helvetica", sans-serif;
+  background-color: rgba(133, 218, 155, 0.3);
+  border: 1px solid $green_light;
+  margin: 20px auto 0 auto;
   padding: 10px;
-  text-align: left;
+
+  &:hover {
+    background-color: rgba(133, 218, 155, 0.5);
+  }
 }
 
-.project-info:hover {
-  opacity: 0.8;
-}
-
-.projects {
-  position: relative;
-  left: 4%;
-  margin-top: 10px;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 10px;
-}
-
-/* professional */
-
-.job {
-  margin: 10px;
-  padding: 10px;
-}
-
-.company {
-  font-size: 1.5em;
-  font-weight: bold;
-}
-
-.job:nth-child(odd) {
-  text-align: left;
-}
-
-.job:nth-child(even) {
-  text-align: right;
-  background-color: #EEE;
-}
-
-.job-header {
-  margin-bottom: 10px;
-}
+/* work */
 
 /* navigation */
+
+.header-content {
+  @include box_sizing;
+  max-width: 940px;
+  height: 100%;
+  margin: 0 auto 0 auto;
+}
 
 .logo {
   display: inline-block;
   background-color: $white_text;
+  margin-top: 5px;
   height: 160px;
   width: 160px;
   border: 8px solid $white_text;
@@ -262,150 +224,68 @@ p {
   border-radius: 50%;
 }
 
-.nav-wrapper {
-  width: 25%;
-  display: inline-block;
-}
-
 .nav-transition li {
   @include transition(all);
 }
 
 .nav {
+  display: inline-block;
+  float: right;
   list-style-type: none;
   text-align: center;
-  position: relative;
-  right: 40px;
+  height: 100%;
 
   li {
+    @include box_sizing;
+    padding-top: 40px;
+    text-align: center;
+    display: inline-block;
     list-style: none;
-    margin: 10px;
-    color: $white_text;
-    padding-top: 8px;
-    padding-bottom: 8px;
     font-weight: bold;
-    min-width: 150px;
+    width: 100px;
+    height: 100%;
     background: $green;
-    border-left: 5px solid $green_light;
-    border-bottom: 5px solid $green_dark;
+
+    &:last-child {
+      margin-left: -4px;
+    }
+
+    a, a:hover, a:visited {
+      display: inline-block;
+      color: $white_text;
+      margin: 0;
+      height: 100%;
+      width: 100%;
+    }
 
     &:hover, &.active {
       color: $white_text;
       cursor: pointer;
       background: $pink;
-      border-left: 5px solid $pink_light;
-      border-bottom: 5px solid $pink_dark;
     }
   }
 }
 
-@media only screen and (max-width: 1070px) {
-  .projects {
-    left: 10%;
-    max-width: 400px;
-  }
-}
 
-@media only screen and (max-device-width: 1025px) {
+@media only screen and (-webkit-min-device-pixel-ratio: 2) and (max-device-width: 500px), (max-width: 500px) {
 
-  .project-info {
-    background-color: $white_text;
-    color: black;
-    opacity: 1;
-    position: relative;
-    margin-top: 10px;
-    height: 100%;
-
-    &:hover {
-      opacity: 1;
-    }
-  }
-
-}
-
-@media only screen and (max-width: 620px) {
-
-  p {
-    line-height: 1.5em;
-  }
-
-  .container {
-    width: 99%;
-    margin-top: 10px
-  }
-
-  .nav-wrapper {
-    margin: 0;
-    width: 100%;
+  header {
+    position: fixed;
+    height: 60px;
+    margin-bottom: 25px;
   }
 
   .nav {
-    padding: 0;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    position: static;
+    width: 100%;
+    margin: 0;
 
     li {
-      display: inline-block;
-      margin: 0;
-      min-width: 0;
-      width: 31%;
+      width: 50%;
+      padding-top: 20px;
     }
   }
 
   .logo {
-    margin-left: 28%;
-  }
-
-  li.rotate {
-    @include transform(rotate(0deg));
-  }
-
-  .projects {
-    left: 8%;
-  }
-
-  .project-info {
-    height: 257px;
-    bottom: 10px;
-  }
-
-  .wrapper {
-    width: 100%;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 10px;
-  }
-
-  .about-me img {
-    width: 150px;
-  }
-}
-
-@media only screen and (-webkit-min-device-pixel-ratio: 2) and (max-device-width: 480px) {
-
-  .projects {
-    position: static;
-  }
-
-  .project-info {
-    height: 100%;
-  }
-
-  .nav li {
-    width: 28%;
-  }
-
-  .logo {
-    margin-left: 20%;
-  }
-
-  .thumbnail {
-    height: 200px;
-    width: 250px;
-  }
-
-  .project-info {
-    width: 250px;
+    display: none;
   }
 }

@@ -3,6 +3,8 @@ body {
   font-family: "Open Sans", "Helvetica", sans-serif;
   height: 100%;
   overflow: auto;
+  margin: 0;
+  width: 100%;
   -moz-transition: all 0.3s;
   -webkit-transition: all 0.3s;
   -o-transition: all 0.3s;
@@ -11,24 +13,32 @@ body {
 
 h1, h2, h3, h4 {
   font-family: "Arvo", "Helvetica", sans-serif;
+  margin: 0 10px 0 10px;
+  display: inline-block; }
+
+.intro {
+  font-size: 2em;
   text-align: center; }
 
-h1 {
-  margin: 0;
-  color: #f8f8f8; }
-
 header {
-  background: #85c4da;
-  border-bottom: 10px solid #49a7c8;
-  border-left: 5px solid #c1e1ec;
-  border-right: 5px solid #c1e1ec;
-  border-top: 5px solid #c1e1ec;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+  background: rgba(133, 196, 218, 0.7);
+  height: 100px;
+  overflow: visible;
   color: #F8F8F8;
-  margin-top: 0;
-  padding: 10px; }
+  margin: 0 0 100px 0;
+  width: 100%; }
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none outside none; }
 
 a {
-  color: #85da9b;
+  color: rgba(133, 218, 155, 0.7);
   text-decoration: none;
   -moz-transition: color 0.3s;
   -webkit-transition: color 0.3s;
@@ -36,9 +46,9 @@ a {
   -ms-transition: color 0.3s;
   transition: color 0.3s; }
   a:visited {
-    color: #85da9b; }
+    color: rgba(133, 218, 155, 0.7); }
   a:hover {
-    color: #da85c4;
+    color: rgba(218, 133, 196, 0.7);
     text-decoration: none; }
 
 p {
@@ -55,31 +65,21 @@ p {
   top: 0;
   z-index: -1; }
 
-.container {
-  max-width: 940px;
-  width: 90%;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 5%;
-  opacity: 0;
-  -moz-transition: opacity 0.3s;
-  -webkit-transition: opacity 0.3s;
-  -o-transition: opacity 0.3s;
-  -ms-transition: opacity 0.3s;
-  transition: opacity 0.3s; }
-
-.loaded {
-  opacity: 1 !important; }
-
 .clearfix {
   display: block; }
 
 .rotate {
-  -webkit-transform: rotate(-15deg);
-  -moz-transform: rotate(-15deg);
-  -o-transform: rotate(-15deg);
-  -ms-transform: rotate(-15deg);
-  transform: rotate(-15deg); }
+  -webkit-transform: rotate(-20deg);
+  -moz-transform: rotate(-20deg);
+  -o-transform: rotate(-20deg);
+  -ms-transform: rotate(-20deg);
+  transform: rotate(-20deg); }
+
+.container {
+  margin: 0 auto 0 auto;
+  max-width: 940px;
+  position: relative;
+  margin-bottom: 10px; }
 
 .clearfix:after {
   visibility: hidden;
@@ -91,25 +91,13 @@ p {
   height: 0;
   width: 0; }
 
-.wrapper {
-  float: right;
-  clear: both;
-  position: relative;
-  width: 70%;
-  background-color: #F8F8F8;
-  margin-bottom: 10px; }
-
-#grow {
-  -moz-transition: height 0.3s;
-  -webkit-transition: height 0.3s;
-  -o-transition: height 0.3s;
-  -ms-transition: height 0.3s;
-  transition: height 0.3s;
+.box {
+  display: table;
+  padding: 30px;
+  background-color: rgba(255, 255, 255, 0.7);
+  border: 2px solid #FFFFFF;
+  margin: 0 auto 50px auto;
   overflow: hidden; }
-
-.content {
-  min-height: 350px;
-  padding: 0px 10px 10px 10px; }
 
 .shadow {
   -webkit-box-shadow: 0px 0px 5px #cccccc;
@@ -118,20 +106,49 @@ p {
   box-shadow: 0px 0px 5px #cccccc; }
 
 /* about me section */
-.about-me-content {
+.vimeo_logo {
+  height: 100px;
+  position: relative;
+  top: 30px; }
+
+.butter {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+  width: 100%; }
+
+.theatre {
+  margin-top: 30px;
+  position: relative;
+  padding-bottom: 53%;
+  padding-top: 30px;
+  height: 0;
+  overflow: hidden; }
+
+.player {
+  background-color: rgba(0, 0, 0, 0.5);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%; }
+
+.more-butter {
+  -moz-transition: background-color 0.3s;
+  -webkit-transition: background-color 0.3s;
+  -o-transition: background-color 0.3s;
+  -ms-transition: background-color 0.3s;
+  transition: background-color 0.3s;
+  display: table;
+  cursor: pointer;
+  font-family: "Arvo", "Helvetica", sans-serif;
+  background-color: rgba(133, 218, 155, 0.3);
+  border: 1px solid #c1eccc;
+  margin: 20px auto 0 auto;
   padding: 10px; }
-
-.about-me h2, .about-me h3 {
-  text-align: left; }
-
-.about-me img {
-  float: right;
-  display: inline-block;
-  margin-left: 5px;
-  margin-bottom: 5px;
-  margin-top: 10px;
-  width: 250px;
-  border: 1px solid #CCC; }
+  .more-butter:hover {
+    background-color: rgba(133, 218, 155, 0.5); }
 
 /* projects section */
 .thumbnail {
@@ -169,7 +186,7 @@ p {
 .project-info:hover {
   opacity: 0.8; }
 
-.projects {
+#projects {
   position: relative;
   left: 4%;
   margin-top: 10px;
@@ -197,9 +214,19 @@ p {
   margin-bottom: 10px; }
 
 /* navigation */
+.header-content {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+  max-width: 940px;
+  height: 100%;
+  margin: 0 auto 0 auto; }
+
 .logo {
   display: inline-block;
   background-color: #f8f8f8;
+  margin-top: 5px;
   height: 160px;
   width: 160px;
   border: 8px solid #f8f8f8;
@@ -207,10 +234,6 @@ p {
 
 #logo-static {
   border-radius: 50%; }
-
-.nav-wrapper {
-  width: 25%;
-  display: inline-block; }
 
 .nav-transition li {
   -moz-transition: all 0.3s;
@@ -220,106 +243,48 @@ p {
   transition: all 0.3s; }
 
 .nav {
+  display: inline-block;
+  float: right;
   list-style-type: none;
   text-align: center;
-  position: relative;
-  right: 40px; }
+  height: 100%; }
   .nav li {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    box-sizing: border-box;
+    padding-top: 40px;
+    text-align: center;
+    display: inline-block;
     list-style: none;
-    margin: 10px;
-    color: #f8f8f8;
-    padding-top: 8px;
-    padding-bottom: 8px;
     font-weight: bold;
-    min-width: 150px;
-    background: #85da9b;
-    border-left: 5px solid #c1eccc;
-    border-bottom: 5px solid #49c86a; }
+    width: 100px;
+    height: 100%;
+    background: rgba(133, 218, 155, 0.7); }
+    .nav li:last-child {
+      margin-left: -4px; }
+    .nav li a, .nav li a:hover, .nav li a:visited {
+      display: inline-block;
+      color: #f8f8f8;
+      margin: 0;
+      height: 100%;
+      width: 100%; }
     .nav li:hover, .nav li.active {
       color: #f8f8f8;
       cursor: pointer;
-      background: #da85c4;
-      border-left: 5px solid #ecc1e1;
-      border-bottom: 5px solid #c849a7; }
+      background: rgba(218, 133, 196, 0.7); }
 
-@media only screen and (max-width: 1070px) {
-  .projects {
-    left: 10%;
-    max-width: 400px; } }
-@media only screen and (max-device-width: 1025px) {
-  .project-info {
-    background-color: #f8f8f8;
-    color: black;
-    opacity: 1;
-    position: relative;
-    margin-top: 10px;
-    height: 100%; }
-    .project-info:hover {
-      opacity: 1; } }
-@media only screen and (max-width: 620px) {
-  p {
-    line-height: 1.5em; }
-
-  .container {
-    width: 99%;
-    margin-top: 10px; }
-
-  .nav-wrapper {
-    margin: 0;
-    width: 100%; }
+@media only screen and (-webkit-min-device-pixel-ratio: 2) and (max-device-width: 480px), (max-width: 480px) {
+  header {
+    height: 60px;
+    margin-bottom: 25px; }
 
   .nav {
-    padding: 0;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    position: static; }
-    .nav li {
-      display: inline-block;
-      margin: 0;
-      min-width: 0;
-      width: 31%; }
-
-  .logo {
-    margin-left: 28%; }
-
-  li.rotate {
-    -webkit-transform: rotate(0deg);
-    -moz-transform: rotate(0deg);
-    -o-transform: rotate(0deg);
-    -ms-transform: rotate(0deg);
-    transform: rotate(0deg); }
-
-  .projects {
-    left: 8%; }
-
-  .project-info {
-    height: 257px;
-    bottom: 10px; }
-
-  .wrapper {
     width: 100%;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 10px; }
-
-  .about-me img {
-    width: 150px; } }
-@media only screen and (-webkit-min-device-pixel-ratio: 2) and (max-device-width: 480px) {
-  .projects {
-    position: static; }
-
-  .project-info {
-    height: 100%; }
-
-  .nav li {
-    width: 28%; }
+    margin: 0; }
+    .nav li {
+      width: 50%;
+      padding-top: 20px; }
 
   .logo {
-    margin-left: 20%; }
-
-  .thumbnail {
-    height: 200px;
-    width: 250px; }
-
-  .project-info {
-    width: 250px; } }
+    display: none; } }

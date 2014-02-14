@@ -1,85 +1,66 @@
 define(['jquery',
-        'handlebars',
+        'backbone',
         'modules/logo_view',
         'modules/background_view',
-        'text!templates/about_me.html',
-        'text!templates/projects.html',
-        'text!templates/professional.html'],
-  function($, Handlbars, LogoView, BackgroundView, aboutTpl, projectsTpl, professionalTpl) {
+        'modules/theatre'],
+  function($, Backbone, LogoView, BackgroundView, TheatreView) {
 
     var AppView = Backbone.View.extend({
 
-      compiledHtml: {},
+      events: {
+        'click .nav > li': 'onNavClick'
+      },
+
+      content: {},
+
+      el: 'body',
 
       initialize: function() {
         var self = this;
 
         self.createElements();
-        self.attachEvents();
         self.renderLogo();
         new BackgroundView({el: '#canvas-background'});
-
-        self.container.addClass('loaded');
+        new TheatreView();
       },
 
       createElements: function() {
         var self = this;
 
         self.container = $('.container');
-        self.menu = $('.nav li');
-        self.grow = $('#grow');
-        self.content = $('.content');
-        self.about_me = $('#about-me');
-        self.projects = $('#projects');
-        self.professional = $('#professional');
-      },
-
-      attachEvents: function() {
-        var self = this;
-
-        self.toggle(self.about_me, aboutTpl);
-        self.toggle(self.projects, projectsTpl);
-        self.toggle(self.professional,  professionalTpl);
-        $(window).resize(_.bind(self.growContentBox, self));
-      },
-
-      compileSection: function(tpl) {
-        var compiled = Handlebars.compile(tpl);
-
-        return compiled();
+        self.nav = $('.nav li');
       },
 
       renderLogo: function() {
         new LogoView({el: '.logo'});
       },
 
-      growContentBox: function() {
-        var self = this,
-            grow = self.grow,
-            contentHeight = self.content.outerHeight();
+      storeContent: function() {
+          var self = this;
 
-        grow[0].style.height = contentHeight + 'px';
+          self.content[self.nav.filter('.active').attr('data-content')] = self.container.html();
       },
 
-      toggle: function(toggle, template) {
-        var self = this;
-
-        toggle.click(self.onShowSection.bind(self, toggle, template));
-      },
-
-      onShowSection: function(toggle, template) {
+      onNavClick: function(e) {
         var self = this,
-            key = toggle.attr('id');
+            target = $(e.target).closest('li'),
+            location = target.find('a').attr('href').replace('#', '');
 
-        self.menu.removeClass('active');
-        toggle.addClass('active');
+        e.preventDefault();
 
-        if (!self.compiledHtml[key]) {
-          self.compiledHtml[key] = self.compileSection(template);
+        self.storeContent();
+        self.nav.removeClass('active');
+        target.addClass('active');
+
+        if (!self.content[location]) {
+          $.get('/' + location, self.onContentReceived.bind(self));
+        } else {
+          self.container.html(self.content[location]);
         }
+      },
 
-        self.content.html(self.compiledHtml[key]);
-        setTimeout(_.bind(self.growContentBox, self), 50);
+      onContentReceived: function(html) {
+        this.container.html(html);
       }
     });
 

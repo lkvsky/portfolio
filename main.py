@@ -10,33 +10,28 @@ def is_devserver():
     return os.environ['SERVER_SOFTWARE'].startswith("Dev")
 
 
-class AboutMe(webapp2.RequestHandler):
+class Main(webapp2.RequestHandler):
     def get(self):
         values = {
-          'debug': is_devserver()
+          'debug': is_devserver(),
+          'current_template': jinja_environment.get_template('templates/about_me.html')
         }
+        template = jinja_environment.get_template('templates/index.html')
+        self.response.out.write(template.render(values))
+
+
+class Work(webapp2.RequestHandler):
+    def get(self):
+        template = jinja_environment.get_template('templates/work.html')
+        self.response.out.write(template.render())
+
+
+class About(webapp2.RequestHandler):
+    def get(self):
         template = jinja_environment.get_template('templates/about_me.html')
-        self.response.out.write(template.render(values))
+        self.response.out.write(template.render())
 
 
-class Projects(webapp2.RequestHandler):
-    def get(self):
-        values = {
-          'debug': is_devserver()
-        }
-        template = jinja_environment.get_template('templates/projects.html')
-        self.response.out.write(template.render(values))
-
-
-class Professional(webapp2.RequestHandler):
-    def get(self):
-        values = {
-          'debug': is_devserver()
-        }
-        template = jinja_environment.get_template('templates/professional.html')
-        self.response.out.write(template.render(values))
-
-
-app = webapp2.WSGIApplication([('/', AboutMe),
-                               ('/projects', Projects),
-                               ('/professional', Professional)],  debug=True)
+app = webapp2.WSGIApplication([('/', Main),
+                               ('/work', Work),
+                               ('/about', About)],  debug=True)

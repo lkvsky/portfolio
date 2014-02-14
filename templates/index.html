@@ -15,10 +15,8 @@
 		{% endif %}
 	</head>
 	<body>
-		<canvas id="canvas-background">
-		</canvas>
-		<div class="container clearfix">
-			<div class="nav-wrapper">
+		<header class="shadow">
+			<div class="header-content clearfix">
 				<div class="logo rotate shadow">
 					<a href="/">
 						<canvas id="logo-static">
@@ -26,23 +24,15 @@
 					</a>
 				</div>
 				<ul class="nav nav-transition">
-					<li id="about-me" class="rotate shadow active">Me</li>
-					<li id="projects" class="rotate shadow">My Work</li>
-					<li id="professional" class="rotate shadow">My Career</li>
+					<li data-content="about" class="active"><a href="#about">Me</a></li>
+					<li data-content="work"><a href="#work">My Work</a></li>
 				</ul>
 			</div>
-			<div class="wrapper shadow">
-				<header>
-					<h1>Kyle Lucovsky</h1>
-				</header>
-				<div id="grow">
-					<div class="content">
-						{% block body %}
-						{% include 'about_me.html' %}
-						{% endblock %}
-					</div>
-				</div>
-			</div>
+		</header>
+		<canvas id="canvas-background">
+		</canvas>
+		<div class="container clearfix">
+			{% include current_template %}
 		</div>
 	</body>
 </html>
