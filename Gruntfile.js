@@ -8,7 +8,7 @@ module.exports = function(grunt) {
     sass: {
       dist: {
         files: {
-          'static/styles/css/main.css' : 'static/styles/sass/main.scss'
+          'static/styles/css/main.css': 'static/styles/sass/main.scss'
         }
       }
     },
@@ -20,11 +20,10 @@ module.exports = function(grunt) {
       }
     },
 
-    minify: {
-      'myproject': {
-        files: {
-          'static/build/main.min.css': [ 'static/styles/css//main.css']
-        }
+    cssmin: {
+      minify: {
+          src: 'static/styles/css/main.css',
+          dest:'static/build/main.min.css'
       }
     },
 
@@ -45,9 +44,9 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-uglify');
-  grunt.loadNpmTasks('grunt-contrib-mincss');
+  grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadNpmTasks('grunt-contrib-requirejs');
 
   // Default task.
-  grunt.registerTask('default', ['minify:myproject', 'requirejs:myproject']);
+  grunt.registerTask('default', ['cssmin', 'requirejs:myproject']);
 };
