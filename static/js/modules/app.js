@@ -2,13 +2,14 @@ define(['jquery',
         'backbone',
         'modules/logo_view',
         'modules/background_view',
-        'modules/theatre'],
-  function($, Backbone, LogoView, BackgroundView, TheatreView) {
+        'modules/about_view'],
+  function($, Backbone, LogoView, BackgroundView, AboutView) {
 
     var AppView = Backbone.View.extend({
 
       events: {
-        'click .nav > li': 'onNavClick'
+        'click .nav > li': 'onNavClick',
+        'preview .preview': 'onPreviewChange'
       },
 
       content: {},
@@ -20,8 +21,10 @@ define(['jquery',
 
         self.createElements();
         self.renderLogo();
-        new BackgroundView({el: '#canvas-background'});
-        new TheatreView();
+        self.background_view = new BackgroundView({el: '#canvas-background'});
+
+        self.active_view = 'about';
+        self.active_module = new AboutView();
       },
 
       createElements: function() {
@@ -41,6 +44,30 @@ define(['jquery',
           self.content[self.nav.filter('.active').attr('data-content')] = self.container.html();
       },
 
+      getContent: function(location) {
+        var self = this,
+            stored_content = self.content[location];
+
+        self.active_view = location;
+
+        if (!stored_content) {
+          $.get('/' + location, self.onContentReceived.bind(self));
+        } else {
+          self.initializeView(stored_content);
+        }
+      },
+
+      initializeView: function(html) {
+        var self = this;
+
+        self.active_module.destroy();
+        self.container.html(html);
+
+        if (self.active_view === 'about') {
+          self.active_module = new AboutView();
+        }
+      },
+
       onNavClick: function(e) {
         var self = this,
             target = $(e.target).closest('li'),
@@ -52,15 +79,15 @@ define(['jquery',
         self.nav.removeClass('active');
         target.addClass('active');
 
-        if (!self.content[location]) {
-          $.get('/' + location, self.onContentReceived.bind(self));
-        } else {
-          self.container.html(self.content[location]);
-        }
+        self.getContent(location);
       },
 
       onContentReceived: function(html) {
-        this.container.html(html);
+        this.initializeView(html);
+      },
+
+      onPreviewChange: function(e, color) {
+        this.background_view.changeBubbleColor(color);
       }
     });
 

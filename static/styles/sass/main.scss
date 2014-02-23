@@ -147,6 +147,13 @@ p {
   border: 2px solid #FFFFFF;
   margin: 0 auto 50px auto;
   overflow: hidden;
+
+  &.inverse {
+    @include box_sizing;
+    background-color: transparent;
+    padding: 0;
+    width: 100%;
+  }
 }
 
 .shadow {
@@ -196,6 +203,67 @@ p {
 
   &:hover {
     background-color: rgba(133, 218, 155, 0.5);
+  }
+}
+
+.color {
+  .intro {
+    width: 240px;
+    margin-bottom: 30px;
+    position: absolute;
+    top: 25px;
+    left: 50%;
+    margin-left: -120px;
+  }
+}
+
+.color-wrapper {
+  position: relative
+}
+
+.preview {
+  @include box-sizing;
+  min-height: 600px;
+  width: 100%;
+  border-top: 100px solid rgba(255, 255, 255, 0.7);
+  border-left: 20px solid rgba(255, 255, 255, 0.7);
+  border-right: 20px solid rgba(255, 255, 255, 0.7);
+  border-bottom: 150px solid rgba(255, 255, 255, 0.7);
+}
+
+.selector {
+  @include box_sizing;
+  height: 50px;
+  width: 15px;
+  border: 5px solid rgba(255, 255, 255, 0.7);
+  position: relative;
+  top: -55px;
+}
+
+.color-selector, .shade-selector {
+  @include box-sizing;
+  margin: 0 auto 15px auto;
+  border: 2px solid #FFFFFF;
+  height: 50px;
+  width: 300px;
+  position: absolute;
+  left: 50%;
+  margin-left: -150px;
+}
+
+.color-selector {
+  top: 470px;
+
+  .selector {
+    left: 67%;
+  }
+}
+
+.shade-selector {
+  top: 530px;
+
+  .selector {
+    left: 33%;
   }
 }
 
@@ -266,21 +334,45 @@ p {
   }
 }
 
-
 @media only screen and (-webkit-min-device-pixel-ratio: 2) and (max-device-width: 500px), (max-width: 500px) {
 
   header {
     position: fixed;
+    top: 0;
     height: 60px;
-    margin-bottom: 25px;
+    z-index: 1;
+  }
+
+  .container {
+    margin-top: 85px;
+  }
+
+  .box {
+    @include box-sizing;
+    display: block;
+    width: 100%;
+  }
+
+  .intro {
+    font-size: 1.5em;
+  }
+
+  #work {
+    font-size: 1em;
   }
 
   .nav {
+    @include box_sizing;
     width: 100%;
     margin: 0;
+    float: right;
+    height: 100%;
 
     li {
-      width: 50%;
+      @include box_sizing;
+      display: inline-block;
+      margin: 0;
+      width: 45%;
       padding-top: 20px;
     }
   }

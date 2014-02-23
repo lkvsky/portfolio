@@ -52,7 +52,18 @@ define(['jquery', 'underscore', 'backbone', 'modules/bubble'], function($, _, Ba
 
         self.bubbles.push(self.createBubble(x, y, rad, vel));
       }
+    },
+
+    changeBubbleColor: function(color) {
+      var self = this,
+          limit = self.bubbles.length,
+          i;
+
+      for (i = 0; i < limit; i++) {
+        self.bubbles[i].changeColor(color);
+      }
     }
+
   });
 
   return BackgroundView;

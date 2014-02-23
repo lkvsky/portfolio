@@ -6,18 +6,19 @@ define(['jquery',
 
       el: '.butter',
 
-      events: {
-        'click .more-butter': 'onMoreButterClick'
-      },
-
       videos: [],
 
       played_videos: [],
+
+      session_storage_key: 'butter_videos',
+
+      is_mobile: ('ontouchstart' in window) || window.DocumentTouch && document instanceof DocumentTouch,
 
       initialize: function() {
         var self = this;
 
         self.createElements();
+        self.attachEvents();
         self.getVideos();
       },
 
@@ -27,13 +28,36 @@ define(['jquery',
         self.player = document.getElementById('vimeo_player');
       },
 
-      getVideos: function() {
+      attachEvents: function() {
         var self = this;
 
-        $.getJSON('http://vimeo.com/api/v2/channel/butter/videos.json', self.onGetVideosSuccess.bind(self));
+        if (self.is_mobile) {
+          self.delegateEvents({'touchstart .more-butter': 'onMoreButter'});
+        } else {
+          self.delegateEvents({'click .more-butter': 'onMoreButter'});
+        }
+      },
+
+      getVideos: function() {
+        var self = this,
+            videos = JSON.parse(sessionStorage.getItem(self.session_storage_key));
+
+        if (videos) {
+          self.parseAndPlayVideos(videos);
+        }
+        else {
+          $.getJSON('http://vimeo.com/api/v2/channel/butter/videos.json', self.onGetVideosSuccess.bind(self));
+        }
       },
 
       onGetVideosSuccess: function(videos) {
+        var self = this;
+
+        sessionStorage.setItem(self.session_storage_key, JSON.stringify(videos));
+        self.parseAndPlayVideos(videos);
+      },
+
+      parseAndPlayVideos: function(videos) {
         var self = this;
 
         self.videos = videos.map(function(video) {
@@ -67,10 +91,14 @@ define(['jquery',
         self.player.src = iframe_src;
       },
 
-      onMoreButterClick: function() {
+      onMoreButter: function() {
         var self = this;
 
         self.play(self.getRandomVideo());
+      },
+
+      destroy: function() {
+        this.undelegateEvents();
       }
 
     });

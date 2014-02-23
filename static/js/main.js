@@ -2,6 +2,8 @@ require.config({
 
   paths: {
     jquery: 'lib/jquery-1-8-0-min',
+    jquery_ui: 'lib/jquery-ui',
+    jquery_touch: 'lib/jquery-ui-touch',
     text: 'lib/text',
     handlebars: 'lib/handlebars',
     backbone: 'lib/backbone',
@@ -16,11 +18,15 @@ require.config({
 
     'underscore': {
       exports: '_'
+    },
+
+    'jquery_touch': {
+      deps: ['jquery_ui']
     }
   }
 
 });
 
-require(['modules/app'], function(AppView){
+require(['modules/app', 'modules/theatre'], function(AppView, TheatreView){
   new AppView();
 });

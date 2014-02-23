@@ -1,6 +1,12 @@
 define(['jquery', 'underscore', 'backbone'], function($, _, Backbone) {
   var Bubble = Backbone.View.extend({
 
+    r: 148,
+
+    g: 181,
+
+    b: 188,
+
     initialize: function() {
       var self = this,
           options = self.options;
@@ -20,15 +26,22 @@ define(['jquery', 'underscore', 'backbone'], function($, _, Backbone) {
     },
 
     drawBubble: function() {
-      var ctx = this.ctx;
+      var self = this,
+          ctx = self.ctx;
 
       ctx.beginPath();
-      ctx.strokeStyle = "rgba(255, 255, 255, 1)";
-      ctx.fillStyle = "rgba(255, 255, 255, 0.5)";
-      ctx.arc(this.x, this.y, this.radius, 0, Math.PI*2, true);
+      ctx.strokeStyle = self.getRgba(0.1);
+      ctx.fillStyle = self.getRgba(0.5);
+      ctx.arc(self.x, self.y, self.radius, 0, Math.PI*2, true);
       ctx.closePath();
       ctx.fill();
       ctx.stroke();
+    },
+
+    getRgba: function(opacity) {
+      var self = this;
+
+      return 'rgba(' + self.r + ', ' + self.g + ', ' + self.b + ', ' + opacity + ')';
     },
 
     update: function() {
@@ -47,6 +60,14 @@ define(['jquery', 'underscore', 'backbone'], function($, _, Backbone) {
 
       self.y -= (0.5 * self.velocity.y);
       self.x += (0.3 * self.velocity.x);
+    },
+
+    changeColor: function(color) {
+      var self = this;
+
+      self.r = color.r;
+      self.g = color.g;
+      self.b = color.b;
     }
   });
 
