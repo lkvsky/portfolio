@@ -43,12 +43,17 @@ $white_text: #f8f8f8;
   box-sizing: $value;
 }
 
+html, body  {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
 body {
   background-color: $body_background;
   font-family: "Open Sans", "Helvetica", sans-serif;
   height: 100%;
   overflow: auto;
-  margin: 0;
   width: 100%;
   @include transition(all);
 }
@@ -59,19 +64,26 @@ h1, h2, h3, h4 {
   display: inline-block;
 }
 
-.intro {
+.large {
   font-size: 2em;
   text-align: center;
 }
 
-header {
+header, footer {
   @include box_sizing;
   background: $blue;
   height: 100px;
   overflow: visible;
   color: #F8F8F8;
-  margin: 0 0 100px 0;
   width: 100%;
+}
+
+header {
+    margin: 0 0 100px 0;
+}
+
+footer {
+  background: rgba(255, 255, 255, 0.7);
 }
 
 ul {
@@ -160,6 +172,16 @@ p {
   @include box_shadow(0px 0px 5px #CCC);
 }
 
+.icon {
+  display: inline-block;
+  background-color: transparent;
+  margin: 20px 25px 25px 25px;
+
+  img {
+    width: 60px;
+  }
+}
+
 /* about me section */
 
 .vimeo_logo {
@@ -207,11 +229,11 @@ p {
 }
 
 .color {
-  .intro {
+  .large {
     width: 240px;
     margin-bottom: 30px;
     position: absolute;
-    top: 25px;
+    top: 20px;
     left: 50%;
     margin-left: -120px;
   }
@@ -255,7 +277,7 @@ p {
   top: 470px;
 
   .selector {
-    left: 67%;
+    left: 56%;
   }
 }
 
@@ -271,11 +293,15 @@ p {
 
 /* navigation */
 
-.header-content {
+.header-content, .footer-content {
   @include box_sizing;
   max-width: 940px;
   height: 100%;
   margin: 0 auto 0 auto;
+}
+
+.footer-content {
+  display: table;
 }
 
 .logo {
@@ -336,11 +362,14 @@ p {
 
 @media only screen and (-webkit-min-device-pixel-ratio: 2) and (max-device-width: 500px), (max-width: 500px) {
 
+  header, footer {
+    height: 60px;
+    z-index: 1;
+  }
+
   header {
     position: fixed;
     top: 0;
-    height: 60px;
-    z-index: 1;
   }
 
   .container {
@@ -353,7 +382,7 @@ p {
     width: 100%;
   }
 
-  .intro {
+  .large {
     font-size: 1.5em;
   }
 
@@ -366,7 +395,7 @@ p {
     width: 100%;
     margin: 0;
     float: right;
-    height: 100%;
+    // height: 100%;
 
     li {
       @include box_sizing;
@@ -379,5 +408,33 @@ p {
 
   .logo {
     display: none;
+  }
+
+  .preview {
+    min-height: 400px;
+    border-top: 60px solid rgba(255, 255, 255, 0.7);
+  }
+
+  .color {
+    .large {
+      top: 10px;
+    }
+  }
+
+  .color-selector {
+    top: 272px;
+  }
+
+  .shade-selector {
+    top: 332px;
+  }
+
+  .icon {
+    display: inline-block;
+    margin: 10px;
+
+    img {
+      width: 40px;
+    }
   }
 }

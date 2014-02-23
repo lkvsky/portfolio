@@ -1,11 +1,11 @@
 define(['jquery', 'underscore', 'backbone'], function($, _, Backbone) {
   var Bubble = Backbone.View.extend({
 
-    r: 148,
+    r: 90,
 
-    g: 181,
+    g: 142,
 
-    b: 188,
+    b: 152,
 
     initialize: function() {
       var self = this,

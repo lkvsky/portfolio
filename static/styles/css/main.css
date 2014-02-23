@@ -1,9 +1,13 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%; }
+
 body {
   background-color: #dff0f5;
   font-family: "Open Sans", "Helvetica", sans-serif;
   height: 100%;
   overflow: auto;
-  margin: 0;
   width: 100%;
   -moz-transition: all 0.3s;
   -webkit-transition: all 0.3s;
@@ -16,11 +20,11 @@ h1, h2, h3, h4 {
   margin: 0 10px 0 10px;
   display: inline-block; }
 
-.intro {
+.large {
   font-size: 2em;
   text-align: center; }
 
-header {
+header, footer {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   -ms-box-sizing: border-box;
@@ -29,8 +33,13 @@ header {
   height: 100px;
   overflow: visible;
   color: #F8F8F8;
-  margin: 0 0 100px 0;
   width: 100%; }
+
+header {
+  margin: 0 0 100px 0; }
+
+footer {
+  background: rgba(255, 255, 255, 0.7); }
 
 ul {
   margin: 0;
@@ -113,6 +122,13 @@ p {
   -ms-box-shadow: 0px 0px 5px #cccccc;
   box-shadow: 0px 0px 5px #cccccc; }
 
+.icon {
+  display: inline-block;
+  background-color: transparent;
+  margin: 20px 25px 25px 25px; }
+  .icon img {
+    width: 60px; }
+
 /* about me section */
 .vimeo_logo {
   height: 100px;
@@ -158,11 +174,11 @@ p {
   .more-butter:hover {
     background-color: rgba(133, 218, 155, 0.5); }
 
-.color .intro {
+.color .large {
   width: 240px;
   margin-bottom: 30px;
   position: absolute;
-  top: 25px;
+  top: 20px;
   left: 50%;
   margin-left: -120px; }
 
@@ -208,7 +224,7 @@ p {
 .color-selector {
   top: 470px; }
   .color-selector .selector {
-    left: 67%; }
+    left: 56%; }
 
 .shade-selector {
   top: 530px; }
@@ -217,7 +233,7 @@ p {
 
 /* work */
 /* navigation */
-.header-content {
+.header-content, .footer-content {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   -ms-box-sizing: border-box;
@@ -225,6 +241,9 @@ p {
   max-width: 940px;
   height: 100%;
   margin: 0 auto 0 auto; }
+
+.footer-content {
+  display: table; }
 
 .logo {
   display: inline-block;
@@ -278,11 +297,13 @@ p {
       background: rgba(218, 133, 196, 0.7); }
 
 @media only screen and (-webkit-min-device-pixel-ratio: 2) and (max-device-width: 500px), (max-width: 500px) {
-  header {
-    position: fixed;
-    top: 0;
+  header, footer {
     height: 60px;
     z-index: 1; }
+
+  header {
+    position: fixed;
+    top: 0; }
 
   .container {
     margin-top: 85px; }
@@ -295,7 +316,7 @@ p {
     display: block;
     width: 100%; }
 
-  .intro {
+  .large {
     font-size: 1.5em; }
 
   #work {
@@ -308,8 +329,7 @@ p {
     box-sizing: border-box;
     width: 100%;
     margin: 0;
-    float: right;
-    height: 100%; }
+    float: right; }
     .nav li {
       -webkit-box-sizing: border-box;
       -moz-box-sizing: border-box;
@@ -321,4 +341,23 @@ p {
       padding-top: 20px; }
 
   .logo {
-    display: none; } }
+    display: none; }
+
+  .preview {
+    min-height: 400px;
+    border-top: 60px solid rgba(255, 255, 255, 0.7); }
+
+  .color .large {
+    top: 10px; }
+
+  .color-selector {
+    top: 272px; }
+
+  .shade-selector {
+    top: 332px; }
+
+  .icon {
+    display: inline-block;
+    margin: 10px; }
+    .icon img {
+      width: 40px; } }

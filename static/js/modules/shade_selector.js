@@ -1,7 +1,7 @@
 define(['jquery', 'underscore', 'backbone', 'jquery_touch'],
   function($, _, Backbone) {
     var ShadeSelector = Backbone.View.extend({
-      displayColor: 'rgb(148, 181, 188)',
+      displayColor: 'rgb(90, 142, 152)',
 
       events: {
         'click #shade-canvas': 'moveSelector'
