@@ -1,14 +1,12 @@
 html, body {
   margin: 0;
-  padding: 0;
-  height: 100%; }
+  padding: 0; }
 
 body {
   background-color: #dff0f5;
+  overflow: hidden;
   font-family: "Open Sans", "Helvetica", sans-serif;
-  height: 100%;
   overflow: auto;
-  width: 100%;
   -moz-transition: all 0.3s;
   -webkit-transition: all 0.3s;
   -o-transition: all 0.3s;
@@ -74,6 +72,19 @@ p {
   top: 0;
   z-index: -1; }
 
+.timeline {
+  position: relative;
+  margin-bottom: 30px; }
+  .timeline:before {
+    content: "";
+    display: block;
+    background-color: #FFFFFF;
+    width: 20px;
+    height: 100%;
+    position: absolute;
+    left: calc(50% - 10px);
+    top: -20px; }
+
 .clearfix {
   display: block; }
 
@@ -87,8 +98,7 @@ p {
 .container {
   margin: 0 auto 0 auto;
   max-width: 940px;
-  position: relative;
-  margin-bottom: 10px; }
+  position: relative; }
 
 .clearfix:after {
   visibility: hidden;
@@ -99,6 +109,11 @@ p {
   clear: both;
   height: 0;
   width: 0; }
+
+.row {
+  display: block;
+  max-width: 600px;
+  margin: 0 auto 0 auto; }
 
 .box {
   display: table;
@@ -115,6 +130,51 @@ p {
     background-color: transparent;
     padding: 0;
     width: 100%; }
+  .box.experience {
+    width: 200px;
+    height: 75px;
+    overflow: visible;
+    position: relative; }
+    .box.experience.vimeo .work_header {
+      background-image: url("../../img/vimeo.png");
+      background-size: 200px;
+      background-position: 0 -30px; }
+    .box.experience.yahoo .work_header {
+      background-image: url("../../img/yahoo.png");
+      background-size: 200px;
+      background-position: 5px -15px; }
+    .box.experience.appacademy .work_header {
+      background-image: url("../../img/appacademy.png");
+      background-size: 75px;
+      background-position: 60px; }
+    .box.experience.nyu .work_header {
+      background-image: url("../../img/nyu.png");
+      background-size: 200px;
+      background-position: -10px; }
+  .box.work {
+    float: left; }
+    .box.work:before {
+      background-color: white;
+      content: "";
+      display: block;
+      position: absolute;
+      top: 45px;
+      left: calc(100% + 13px);
+      height: 20px;
+      width: 15px; }
+  .box.school {
+    float: right; }
+    .box.school .info {
+      margin-top: 20px; }
+    .box.school:before {
+      background-color: white;
+      content: "";
+      display: block;
+      position: absolute;
+      top: 45px;
+      left: -28px;
+      height: 20px;
+      width: 15px; }
 
 .shadow {
   -webkit-box-shadow: 0px 0px 5px #cccccc;
@@ -125,15 +185,28 @@ p {
 .icon {
   display: inline-block;
   background-color: transparent;
-  margin: 20px 25px 25px 25px; }
+  margin: 25px 25px 0px 25px; }
   .icon img {
-    width: 60px; }
+    width: 50px; }
+
+.work_header {
+  color: transparent;
+  height: 75px;
+  width: 200px;
+  margin: 0;
+  background-repeat: no-repeat; }
 
 /* about me section */
-.vimeo_logo {
-  height: 100px;
+.vimeo_link {
+  display: inline-block;
+  width: 200px;
+  height: 75px;
   position: relative;
-  top: 30px; }
+  top: 15px;
+  background-image: url("../../img/vimeo.png");
+  background-repeat: no-repeat;
+  background-size: 200px;
+  background-position: 0 -20px; }
 
 .butter {
   -webkit-box-sizing: border-box;
@@ -178,7 +251,7 @@ p {
   width: 240px;
   margin-bottom: 30px;
   position: absolute;
-  top: 20px;
+  top: 30px;
   left: 50%;
   margin-left: -120px; }
 
@@ -192,9 +265,9 @@ p {
   box-sizing: border-box;
   min-height: 600px;
   width: 100%;
-  border-top: 100px solid rgba(255, 255, 255, 0.7);
-  border-left: 20px solid rgba(255, 255, 255, 0.7);
-  border-right: 20px solid rgba(255, 255, 255, 0.7);
+  border-top: 120px solid rgba(255, 255, 255, 0.7);
+  border-left: 30px solid rgba(255, 255, 255, 0.7);
+  border-right: 30px solid rgba(255, 255, 255, 0.7);
   border-bottom: 150px solid rgba(255, 255, 255, 0.7); }
 
 .selector {
@@ -202,9 +275,11 @@ p {
   -moz-box-sizing: border-box;
   -ms-box-sizing: border-box;
   box-sizing: border-box;
-  height: 50px;
-  width: 15px;
-  border: 5px solid rgba(255, 255, 255, 0.7);
+  height: 51px;
+  width: 25px;
+  border: 10px solid rgba(255, 255, 255, 0.7);
+  border-top: 5px solid rgba(255, 255, 255, 0.7);
+  border-bottom: 5px solid rgba(255, 255, 255, 0.7);
   position: relative;
   top: -55px; }
 
@@ -214,7 +289,6 @@ p {
   -ms-box-sizing: border-box;
   box-sizing: border-box;
   margin: 0 auto 15px auto;
-  border: 2px solid #FFFFFF;
   height: 50px;
   width: 300px;
   position: absolute;
@@ -222,12 +296,12 @@ p {
   margin-left: -150px; }
 
 .color-selector {
-  top: 470px; }
+  top: 472px; }
   .color-selector .selector {
     left: 56%; }
 
 .shade-selector {
-  top: 530px; }
+  top: 532px; }
   .shade-selector .selector {
     left: 33%; }
 
@@ -296,7 +370,7 @@ p {
       cursor: pointer;
       background: rgba(218, 133, 196, 0.7); }
 
-@media only screen and (-webkit-min-device-pixel-ratio: 2) and (max-device-width: 500px), (max-width: 500px) {
+@media only screen and (-webkit-min-device-pixel-ratio: 2) and (max-device-width: 550px), (max-width: 550px) {
   header, footer {
     height: 60px;
     z-index: 1; }
@@ -305,8 +379,25 @@ p {
     position: fixed;
     top: 0; }
 
+  footer {
+    overflow: hidden; }
+
   .container {
     margin-top: 85px; }
+
+  .timeline:before {
+    display: none; }
+  .timeline .box {
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    -ms-box-sizing: content-box;
+    box-sizing: content-box;
+    float: none;
+    height: 100%; }
+    .timeline .box.work:before, .timeline .box.school:before {
+      display: none; }
+  .timeline .vimeo, .timeline .appacademy, .timeline .yahoo, .timeline .nyu {
+    position: static; }
 
   .box {
     -webkit-box-sizing: border-box;

@@ -46,15 +46,13 @@ $white_text: #f8f8f8;
 html, body  {
   margin: 0;
   padding: 0;
-  height: 100%;
 }
 
 body {
   background-color: $body_background;
+  overflow: hidden;
   font-family: "Open Sans", "Helvetica", sans-serif;
-  height: 100%;
   overflow: auto;
-  width: 100%;
   @include transition(all);
 }
 
@@ -126,6 +124,22 @@ p {
   z-index: -1;
 }
 
+.timeline {
+  position: relative;
+  margin-bottom: 30px;
+
+  &:before {
+    content: "";
+    display: block;
+    background-color: #FFFFFF;
+    width: 20px;
+    height: 100%;
+    position: absolute;
+    left: calc(50% - 10px);
+    top: -20px;
+  }
+}
+
 .clearfix {
   display: block;
 }
@@ -138,7 +152,6 @@ p {
   margin: 0 auto 0 auto;
   max-width: 940px;
   position: relative;
-  margin-bottom: 10px;
 }
 
 .clearfix:after {
@@ -150,6 +163,12 @@ p {
    clear: both;
    height: 0;
    width: 0;
+ }
+
+ .row {
+  display: block;
+  max-width: 600px;
+  margin: 0 auto 0 auto;
  }
 
 .box {
@@ -166,6 +185,85 @@ p {
     padding: 0;
     width: 100%;
   }
+
+  &.experience {
+    width: 200px;
+    height: 75px;
+    overflow: visible;
+    position: relative;
+
+    &.vimeo {
+      // top: -550px;
+
+      .work_header {
+        background-image: url('../../img/vimeo.png');
+        background-size: 200px;
+        background-position: 0 -30px;
+      }
+    }
+
+    &.yahoo {
+      // top: -200px;
+
+      .work_header {
+        background-image: url('../../img/yahoo.png');
+        background-size: 200px;
+        background-position: 5px -15px;
+      }
+    }
+
+    &.appacademy {
+      // top: -300px;
+
+      .work_header {
+        background-image: url('../../img/appacademy.png');
+        background-size: 75px;
+        background-position: 60px;
+      }
+    }
+
+    &.nyu {
+      .work_header {
+        background-image: url('../../img/nyu.png');
+        background-size: 200px;
+        background-position: -10px;
+      }
+    }
+  }
+
+  &.work {
+    float: left;
+
+    &:before {
+      background-color: white;
+      content: "";
+      display: block;
+      position: absolute;
+      top: 45px;
+      left: calc(100% + 13px);
+      height: 20px;
+      width: 15px;
+    }
+  }
+
+  &.school {
+    float: right;
+
+    .info {
+      margin-top: 20px;
+    }
+
+    &:before {
+      background-color: white;
+      content: "";
+      display: block;
+      position: absolute;
+      top: 45px;
+      left: -28px;
+      height: 20px;
+      width: 15px;
+    }
+  }
 }
 
 .shadow {
@@ -175,19 +273,33 @@ p {
 .icon {
   display: inline-block;
   background-color: transparent;
-  margin: 20px 25px 25px 25px;
+  margin: 25px 25px 0px 25px;
 
   img {
-    width: 60px;
+    width: 50px;
   }
+}
+
+.work_header {
+  color: transparent;
+  height: 75px;
+  width: 200px;
+  margin: 0;
+  background-repeat: no-repeat;
 }
 
 /* about me section */
 
-.vimeo_logo {
-  height: 100px;
+.vimeo_link {
+  display: inline-block;
+  width: 200px;
+  height: 75px;
   position: relative;
-  top: 30px;
+  top: 15px;
+  background-image: url('../../img/vimeo.png');
+  background-repeat: no-repeat;
+  background-size: 200px;
+  background-position: 0 -20px;
 }
 
 .butter {
@@ -233,7 +345,7 @@ p {
     width: 240px;
     margin-bottom: 30px;
     position: absolute;
-    top: 20px;
+    top: 30px;
     left: 50%;
     margin-left: -120px;
   }
@@ -247,17 +359,19 @@ p {
   @include box-sizing;
   min-height: 600px;
   width: 100%;
-  border-top: 100px solid rgba(255, 255, 255, 0.7);
-  border-left: 20px solid rgba(255, 255, 255, 0.7);
-  border-right: 20px solid rgba(255, 255, 255, 0.7);
+  border-top: 120px solid rgba(255, 255, 255, 0.7);
+  border-left: 30px solid rgba(255, 255, 255, 0.7);
+  border-right: 30px solid rgba(255, 255, 255, 0.7);
   border-bottom: 150px solid rgba(255, 255, 255, 0.7);
 }
 
 .selector {
   @include box_sizing;
-  height: 50px;
-  width: 15px;
-  border: 5px solid rgba(255, 255, 255, 0.7);
+  height: 51px;
+  width: 25px;
+  border: 10px solid rgba(255, 255, 255, 0.7);
+  border-top: 5px solid rgba(255, 255, 255, 0.7);
+  border-bottom: 5px solid rgba(255, 255, 255, 0.7);
   position: relative;
   top: -55px;
 }
@@ -265,7 +379,6 @@ p {
 .color-selector, .shade-selector {
   @include box-sizing;
   margin: 0 auto 15px auto;
-  border: 2px solid #FFFFFF;
   height: 50px;
   width: 300px;
   position: absolute;
@@ -274,7 +387,7 @@ p {
 }
 
 .color-selector {
-  top: 470px;
+  top: 472px;
 
   .selector {
     left: 56%;
@@ -282,7 +395,7 @@ p {
 }
 
 .shade-selector {
-  top: 530px;
+  top: 532px;
 
   .selector {
     left: 33%;
@@ -360,7 +473,7 @@ p {
   }
 }
 
-@media only screen and (-webkit-min-device-pixel-ratio: 2) and (max-device-width: 500px), (max-width: 500px) {
+@media only screen and (-webkit-min-device-pixel-ratio: 2) and (max-device-width: 550px), (max-width: 550px) {
 
   header, footer {
     height: 60px;
@@ -372,8 +485,33 @@ p {
     top: 0;
   }
 
+  footer {
+    overflow: hidden;
+  }
+
   .container {
     margin-top: 85px;
+  }
+
+  .timeline {
+
+    &:before {
+      display: none;
+    }
+
+    .box {
+      @include box-sizing(content-box);
+      float: none;
+      height: 100%;
+
+      &.work:before, &.school:before {
+        display: none;
+      }
+    }
+
+    .vimeo, .appacademy, .yahoo, .nyu {
+      position: static;
+    }
   }
 
   .box {
@@ -395,7 +533,6 @@ p {
     width: 100%;
     margin: 0;
     float: right;
-    // height: 100%;
 
     li {
       @include box_sizing;
