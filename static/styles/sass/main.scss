@@ -193,8 +193,6 @@ p {
     position: relative;
 
     &.vimeo {
-      // top: -550px;
-
       .work_header {
         background-image: url('../../img/vimeo.png');
         background-size: 200px;
@@ -203,8 +201,6 @@ p {
     }
 
     &.yahoo {
-      // top: -200px;
-
       .work_header {
         background-image: url('../../img/yahoo.png');
         background-size: 200px;
@@ -213,8 +209,6 @@ p {
     }
 
     &.appacademy {
-      // top: -300px;
-
       .work_header {
         background-image: url('../../img/appacademy.png');
         background-size: 75px;
@@ -229,9 +223,16 @@ p {
         background-position: -10px;
       }
     }
+
+    &.gawker {
+      .work_header {
+        background-image: url('../../img/gawker.png');
+        background-size: 200px;
+      }
+    }
   }
 
-  &.work {
+  &.left {
     float: left;
 
     &:before {
@@ -246,7 +247,7 @@ p {
     }
   }
 
-  &.school {
+  &.right {
     float: right;
 
     .info {
@@ -504,7 +505,7 @@ p {
       float: none;
       height: 100%;
 
-      &.work:before, &.school:before {
+      &.left:before, &.right:before {
         display: none;
       }
     }

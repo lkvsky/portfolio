@@ -151,9 +151,12 @@ p {
       background-image: url("../../img/nyu.png");
       background-size: 200px;
       background-position: -10px; }
-  .box.work {
+    .box.experience.gawker .work_header {
+      background-image: url("../../img/gawker.png");
+      background-size: 200px; }
+  .box.left {
     float: left; }
-    .box.work:before {
+    .box.left:before {
       background-color: white;
       content: "";
       display: block;
@@ -162,11 +165,11 @@ p {
       left: calc(100% + 13px);
       height: 20px;
       width: 15px; }
-  .box.school {
+  .box.right {
     float: right; }
-    .box.school .info {
+    .box.right .info {
       margin-top: 20px; }
-    .box.school:before {
+    .box.right:before {
       background-color: white;
       content: "";
       display: block;
@@ -394,7 +397,7 @@ p {
     box-sizing: content-box;
     float: none;
     height: 100%; }
-    .timeline .box.work:before, .timeline .box.school:before {
+    .timeline .box.left:before, .timeline .box.right:before {
       display: none; }
   .timeline .vimeo, .timeline .appacademy, .timeline .yahoo, .timeline .nyu {
     position: static; }
