@@ -15,7 +15,7 @@ body {
 
 h1, h2, h3, h4 {
   font-family: "Arvo", "Helvetica", sans-serif;
-  margin: 0 10px 0 10px;
+  margin: 0;
   display: inline-block; }
 
 .large {
@@ -45,7 +45,7 @@ ul {
   list-style: none outside none; }
 
 a {
-  color: rgba(133, 218, 155, 0.7);
+  color: rgba(218, 133, 196, 0.7);
   text-decoration: none;
   -moz-transition: color 0.3s;
   -webkit-transition: color 0.3s;
@@ -53,9 +53,9 @@ a {
   -ms-transition: color 0.3s;
   transition: color 0.3s; }
   a:visited {
-    color: rgba(133, 218, 155, 0.7); }
+    color: rgba(218, 133, 196, 0.7); }
   a:hover {
-    color: rgba(218, 133, 196, 0.7);
+    color: rgba(133, 218, 155, 0.7);
     text-decoration: none; }
 
 p {
@@ -180,10 +180,10 @@ p {
       width: 15px; }
 
 .shadow {
-  -webkit-box-shadow: 0px 0px 5px #cccccc;
-  -moz-box-shadow: 0px 0px 5px #cccccc;
-  -ms-box-shadow: 0px 0px 5px #cccccc;
-  box-shadow: 0px 0px 5px #cccccc; }
+  -webkit-box-shadow: 0px 0px 5px #CCC;
+  -moz-box-shadow: 0px 0px 5px #CCC;
+  -ms-box-shadow: 0px 0px 5px #CCC;
+  box-shadow: 0px 0px 5px #CCC; }
 
 .icon {
   display: inline-block;
@@ -455,3 +455,5 @@ p {
     margin: 10px; }
     .icon img {
       width: 40px; } }
+
+/*# sourceMappingURL=main.css.map */

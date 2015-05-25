@@ -58,7 +58,7 @@ body {
 
 h1, h2, h3, h4 {
   font-family: "Arvo", "Helvetica", sans-serif;
-  margin: 0 10px 0 10px;
+  margin: 0;
   display: inline-block;
 }
 
@@ -91,16 +91,16 @@ ul {
 }
 
 a {
-  color: $green;
+  color: $pink;
   text-decoration: none;
   @include transition(color);
 
   &:visited {
-    color: $green;
+    color: $pink;
   }
 
   &:hover {
-    color: $pink;
+    color: $green;
     text-decoration: none;
   }
 }
