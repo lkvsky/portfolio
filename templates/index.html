@@ -5,11 +5,9 @@
 		<title>Kyle Lucovsky</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		{% if debug %}
-		<link rel="stylesheet" type="text/css" href="static/styles/css/main.css">
-		<!-- // <script data-main="static/js/main" src="static/js/lib/require.js"></script> -->
+			<link rel="stylesheet" type="text/css" href="static/styles/css/main.css">
 		{% else %}
-		<link rel="stylesheet" type="text/css" href="static/build/css/main.min.css">
-		<!-- // <script data-main="static/js/optimized-main" src="static/js/lib/require.js"></script> -->
+			<link rel="stylesheet" type="text/css" href="static/build/css/main.min.css">
 		{% endif %}
 	</head>
 	<body>
@@ -125,41 +123,6 @@
                 </div>
             </div>
     	</section>
-        <script>
-            (function () {
-                function Portfolio() { }
-
-                Portfolio.prototype.init = function () {
-                    console.log(this);
-                    document.addEventListener('DOMContentLoaded', this.attachEvents.bind(this))
-                }
-
-                Portfolio.prototype.attachEvents = function () {
-                    var icons = document.getElementsByClassName('app-icon'),
-                        close = document.getElementsByClassName('app-info-close')[0];
-
-                    for (i = 0; i < icons.length; i++) {
-                        icons[i].addEventListener('click', this.openAppInfo.bind(this));
-                    }
-
-                    close.addEventListener('click', this.closeAppInfo.bind(this));
-                }
-
-                Portfolio.prototype.openAppInfo = function (evt) {
-                    var appInfo = document.getElementsByClassName('app-info')[0];
-
-                    appInfo.classList.remove('collapsed');
-                }
-
-                Portfolio.prototype.closeAppInfo = function (evt) {
-                    var appInfo = document.getElementsByClassName('app-info')[0];
-
-                    appInfo.classList.add('collapsed');
-                }
-
-                var portfolio = new Portfolio();
-                portfolio.init();
-            })()
-        </script>
+    	<script type="text/javascript" src="static/js/bundle.js" charset="utf-8"></script>
  	</body>
 </html>

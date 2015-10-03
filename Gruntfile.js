@@ -1,5 +1,4 @@
 module.exports = function(grunt) {
-
   // Project configuration.
   grunt.initConfig({
     // Metadata.
@@ -31,6 +30,10 @@ module.exports = function(grunt) {
       css: {
         files: '**/*.scss',
         tasks: ['sass', 'postcss']
+      },
+      js: {
+        files: '**/*.js',
+        tasks: ['webpack']
       }
     },
 
@@ -41,27 +44,23 @@ module.exports = function(grunt) {
       }
     },
 
-    requirejs: {
-      'myproject': {
-        options: {
-          name: 'main',
-          baseUrl: 'static/js',
-          mainConfigFile: 'static/js/main.js',
-          optimize: 'uglify',
-          out: 'static/js/optimized-main.js'
-        }
+    webpack: {
+      portfolio: {
+          entry: './static/js/modules/main.js',
+          output: {
+            path: './static/js',
+            filename: 'bundle.js'
+          }
       }
-    }
+    },
   });
 
   grunt.loadNpmTasks('grunt-contrib-sass');
   grunt.loadNpmTasks('grunt-postcss');
   grunt.loadNpmTasks('grunt-contrib-watch');
-  grunt.loadNpmTasks('grunt-contrib-concat');
-  grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
-  grunt.loadNpmTasks('grunt-contrib-requirejs');
+  grunt.loadNpmTasks('grunt-webpack');
 
   // Default task.
-  grunt.registerTask('default', ['cssmin', 'requirejs:myproject']);
+  grunt.registerTask('default', ['cssmin']);
 };
