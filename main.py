@@ -14,24 +14,9 @@ class Main(webapp2.RequestHandler):
     def get(self):
         values = {
           'debug': is_devserver(),
-          'current_template': jinja_environment.get_template('templates/about_me.html')
         }
         template = jinja_environment.get_template('templates/index.html')
         self.response.out.write(template.render(values))
 
 
-class Work(webapp2.RequestHandler):
-    def get(self):
-        template = jinja_environment.get_template('templates/work.html')
-        self.response.out.write(template.render())
-
-
-class About(webapp2.RequestHandler):
-    def get(self):
-        template = jinja_environment.get_template('templates/about_me.html')
-        self.response.out.write(template.render())
-
-
-app = webapp2.WSGIApplication([('/', Main),
-                               ('/work', Work),
-                               ('/about', About)],  debug=True)
+app = webapp2.WSGIApplication([('/', Main)],  debug=True)

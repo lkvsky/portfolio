@@ -13,10 +13,24 @@ module.exports = function(grunt) {
       }
     },
 
+    postcss: {
+      options: {
+        map: true, // inline sourcemaps
+        processors: [
+          require('pixrem')(), // add fallbacks for rem units
+          require('autoprefixer')({browsers: 'last 2 versions'}), // add vendor prefixes
+          require('cssnano')() // minify the result
+        ]
+      },
+      dist: {
+        src: 'public/stylesheets/*.css'
+      }
+    },
+
     watch: {
       css: {
         files: '**/*.scss',
-        tasks: ['sass']
+        tasks: ['sass', 'postcss']
       }
     },
 
@@ -41,6 +55,7 @@ module.exports = function(grunt) {
   });
 
   grunt.loadNpmTasks('grunt-contrib-sass');
+  grunt.loadNpmTasks('grunt-postcss');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-uglify');
