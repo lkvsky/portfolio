@@ -3,18 +3,33 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>Kyle Lucovsky</title>
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		{% if debug %}
-			<link rel="stylesheet" type="text/css" href="static/styles/css/main.css">
-		{% else %}
-			<link rel="stylesheet" type="text/css" href="static/build/css/main.min.css">
-		{% endif %}
+		<link rel="stylesheet" type="text/css" href="static/styles/css/main.css">
 	</head>
 	<body>
 		<!-- load up svg elements -->
     	{% include 'templates/svg.html' %}
 
-		<section class="section hero">
+    	<header class="nav">
+    		<ul class="nav-list clearfix">
+    			<li class="nav-list-item home-icon">
+    				<a data-scroll="js_hero-section" href="javascript:void(0)" class="js_nav-link nav-list-link">
+    					<svg>
+                            <use xlink:href="#home_icon" />
+                        </svg>
+                    </a>
+    			</li>
+    			<li data-scroll="js_personal-section" class="js_nav-link nav-list-item right">
+    				<a href="javascript:void(0)" class="nav-list-link">Play</a>
+    			</li>
+       			<li data-scroll="js_professional-section" class="js_nav-link nav-list-item right">
+	    			<a href="javascript:void(0)" class="nav-list-link">Work</a>
+	    		</li>
+    		</ul>
+    	</header>
+
+		<section class="section hero js_hero-section">
 			<div class="logo">
 				<svg class="letter letter-k">
 					<use xlink:href="#k_shape" />
@@ -62,42 +77,28 @@
                         <use xlink:href="#short_hill" />
                     </svg>
                     <p class="about-text">Hello! My name’s Kyle Lucovsky. I’m a software engineer in Brooklyn, NY. I like knitting hats and playing with my pup, Butter. If you like what you see, say “Hey!”</p>
+                    <div class="contact">
+	                    <a href="mailto:kyle@lucovsky.com">
+	                    	<svg>
+		        				<use xlink:href="#google_icon" />
+		        			</svg>
+		        		</a>
+		        		<a target="_blank" href="https://github.com/lkvsky">
+	            			<svg>
+	            				<use xlink:href="#github_icon" />
+	            			</svg>
+	            		</a>
+	            		<a target="_blank" href="https://twitter.com/lkvsky">
+	            			<svg>
+	            				<use xlink:href="#twitter_icon" />
+	            			</svg>
+	            		</a>
+                    </div>
                 </div>
             </div>
 		</section>
 
-		<section class="section personal">
-            <div class="wrapper personal-wrapper">
-                <svg class="iphone-svg">
-                    <use xlink:href="#iphone" />
-                </svg>
-                <div class="personal-apps">
-                    <div class="app-icon" data-info="buttr">
-                        <img src="static/img/buttr_icon.png" srcset="static/img/buttr_icon.png 1x, static/img/buttr_icon@2x.png 2x, static/img/buttr_icon@3x.png 3x"/>
-                        <h3>Buttr</h3>
-                    </div>
-                    <div class="app-icon" data-info="500days">
-                        <img src="static/img/kristin_icon.png" srcset="static/img/kristin_icon.png 1x, static/img/kristin_icon@2x.png 2x, static/img/kristin_icon@3x.png 3x"/>
-                        <h3>500 Days</h3>
-                    </div>
-                    <div class="app-info collapsed">
-                        <a class="app-info-close" href="javascript:void(0)">
-                            <svg>
-                                <use xlink:href="#x_icon" />
-                            </svg>
-                        </a>
-                        <p class="hide" data-info="buttr">
-                            Buttr
-                        </p>
-                        <p class="hide" data-info="500days">
-                            500 days
-                        </p>
-                    </div>
-                </div>
-            </div>
-    	</section>
-
-		<section class="section professional">
+		<section class="section professional js_professional-section">
             <div class="wrapper professional-wrapper">
                 <div class="browser">
                     <div class="browser-actions">
@@ -115,10 +116,41 @@
                     <div class="browser-window">
                         <div class="jobs">
                             <img class="job-icon" src="static/img/logo_gawker.png" srcset="static/img/logo_gawker.png 1x, static/img/logo_gawker@2x.png 2x, static/img/logo_gawker@3x.png 3x" />
+							<img class="job-icon" src="static/img/logo_hillary.png" srcset="static/img/logo_hillary.png 1x, static/img/logo_hillary@2x.png 2x, static/img/logo_hillary@3x.png 3x" />
                             <img class="job-icon" src="static/img/logo_vimeo.png" srcset="static/img/logo_vimeo.png 1x, static/img/logo_vimeo@2x.png 2x, static/img/logo_vimeo@3x.png 3x" />
-                            <img class="job-icon" src="static/img/logo_appacademy.png" srcset="static/img/logo_appacademy.png 1x, static/img/logo_appacademy@2x.png 2x, static/img/logo_appacademy@3x.png 3x" />
                             <img class="job-icon" src="static/img/logo_yahoo.png" srcset="static/img/logo_yahoo.png 1x, static/img/logo_yahoo@2x.png 2x, static/img/logo_yahoo@3x.png 3x" />
                         </div>
+                    </div>
+                </div>
+            </div>
+    	</section>
+
+    	<section class="section personal js_personal-section">
+            <div class="wrapper personal-wrapper">
+                <svg class="iphone-svg">
+                    <use xlink:href="#iphone" />
+                </svg>
+                <div class="personal-apps">
+                    <div class="app-icon js_app-icon" data-info="buttr">
+                        <img src="static/img/buttr_icon.png" srcset="static/img/buttr_icon.png 1x, static/img/buttr_icon@2x.png 2x, static/img/buttr_icon@3x.png 3x"/>
+                        <h3>Buttr</h3>
+                    </div>
+                    <div class="app-icon js_app-icon" data-info="500days">
+                        <img src="static/img/kristin_icon.png" srcset="static/img/kristin_icon.png 1x, static/img/kristin_icon@2x.png 2x, static/img/kristin_icon@3x.png 3x"/>
+                        <h3>500 Days</h3>
+                    </div>
+                    <div class="app-info collapsed">
+                        <a class="app-info-close" href="javascript:void(0)">
+                            <svg>
+                                <use xlink:href="#x_icon" />
+                            </svg>
+                        </a>
+                        <p class="hide js_app-info-text" data-info="buttr">
+                            Download now in the <a target="_blank" href="https://itunes.apple.com/us/app/id1033885935">App Store</a>! Buttr is an iOS kitchen timer app full of flavor. Buttr was built in Swift and designed by <a target="_blank" href="http://portfolio.kurtyalcin.com/">Kurt Yalcin</a>. Buttr uses some custom written UI controls drawn with Core Graphics, and persists timers using Core Data to keep track of time when the app is in the background. Tap Butter the dog (inspired by <a target="_blank" href="https://instagram.com/p/72nLqKkqAg/?taken-by=lkvsky">the real Butter</a>) for some fun Core Animation!
+                        </p>
+                        <p class="hide js_app-info-text" data-info="500days">
+                            <a target="_blank" href="https://github.com/lkvsky/500-days">500 days</a> is a sample application designed in Sketch and written in Objective-C. The app tracks the progress of the Gawker series <a target="_blank" href="http://gawker.com/tag/500-days-of-kristin">500 Days of Kristin</a>. On load, the app fetches content from Gawker's tag API and then persists article data locally with Core Data. As you scroll through the timeline, you can tap timeline cells to load a webview with the article from that day.
+                        </p>
                     </div>
                 </div>
             </div>

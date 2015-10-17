@@ -1,3 +1,5 @@
+var webpack = require('webpack');
+
 module.exports = function(grunt) {
   // Project configuration.
   grunt.initConfig({
@@ -22,7 +24,7 @@ module.exports = function(grunt) {
         ]
       },
       dist: {
-        src: 'public/stylesheets/*.css'
+        src: 'static/styles/css/*.css'
       }
     },
 
@@ -37,20 +39,16 @@ module.exports = function(grunt) {
       }
     },
 
-    cssmin: {
-      minify: {
-          src: 'static/styles/css/main.css',
-          dest:'static/build/css/main.min.css'
-      }
-    },
-
     webpack: {
       portfolio: {
-          entry: './static/js/modules/main.js',
-          output: {
-            path: './static/js',
-            filename: 'bundle.js'
-          }
+        entry: './static/js/modules/main.js',
+        output: {
+          path: './static/js',
+          filename: 'bundle.js'
+        },
+        externals: {
+          'jquery': 'jQuery'
+        }
       }
     },
   });
@@ -58,9 +56,8 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-sass');
   grunt.loadNpmTasks('grunt-postcss');
   grunt.loadNpmTasks('grunt-contrib-watch');
-  grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadNpmTasks('grunt-webpack');
 
   // Default task.
-  grunt.registerTask('default', ['cssmin']);
+  grunt.registerTask('default', ['sass', 'postcss', 'webpack']);
 };

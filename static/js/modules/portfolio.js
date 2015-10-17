@@ -1,30 +1,48 @@
 function Portfolio() { }
 
 Portfolio.prototype.init = function () {
-    document.addEventListener('DOMContentLoaded', this.attachEvents.bind(this))
+    this.attachEvents();
 }
 
 Portfolio.prototype.attachEvents = function () {
-    var icons = document.getElementsByClassName('app-icon'),
-        close = document.getElementsByClassName('app-info-close')[0];
+    var icons = $('.js_app-icon'),
+        close = $('.app-info-close'),
+        navLinks = $('.js_nav-link');
 
-    for (i = 0; i < icons.length; i++) {
-        icons[i].addEventListener('click', this.openAppInfo.bind(this));
-    }
+    icons.on('click', this.openAppInfo.bind(this));
+    close.on('click', this.closeAppInfo.bind(this));
+    navLinks.on('click', this.onNavLinkClick.bind(this));
 
-    close.addEventListener('click', this.closeAppInfo.bind(this));
 }
 
 Portfolio.prototype.openAppInfo = function (evt) {
-    var appInfo = document.getElementsByClassName('app-info')[0];
+    var appIconInfoString = $(evt.currentTarget).closest('.js_app-icon').data('info'),
+        appInfoWrapper = $('.app-info'),
+        appInfoTexts = $('.js_app-info-text'),
+        iphoneSvg = $('.iphone-svg').closest('div');
 
-    appInfo.classList.remove('collapsed');
+    appInfoTexts.filter('[data-info="' + appIconInfoString + '"]').removeClass('hide');
+    appInfoWrapper.removeClass('collapsed');
+    iphoneSvg.addClass('shake');
 }
 
 Portfolio.prototype.closeAppInfo = function (evt) {
-    var appInfo = document.getElementsByClassName('app-info')[0];
+    var appInfo = $('.app-info'),
+        appInfoTexts = $('.js_app-info-text'),
+        iphoneSvg = $('.iphone-svg').closest('div');
 
-    appInfo.classList.add('collapsed');
+    appInfoTexts.addClass('hide');
+    appInfo.addClass('collapsed');
+    iphoneSvg.removeClass('shake');
+}
+
+Portfolio.prototype.onNavLinkClick = function (evt) {
+    var icon = $(evt.currentTarget),
+        targetSection = $('.' + icon.data('scroll'));
+
+    $('html, body').animate({
+        scrollTop: targetSection.offset().top - 50
+    }, 300);
 }
 
 module.exports = Portfolio;
