@@ -16,6 +16,7 @@ $blue: #A8D9FE;
 $green: #40CB9B;
 $orange: #F58F71;
 $grey: #D3D3D3;
+$light-grey: #F6F6F6;
 
 // animations
 
@@ -211,7 +212,7 @@ h2 {
   top: 0;
   left: 0;
   right: 0;
-  height: 50px;
+  height: 55px;
   z-index: 100;
 }
 
@@ -257,16 +258,22 @@ h2 {
 }
 
 .home-icon {
-  padding: 0 10px;
+  padding: 8px 10px 0;
 
   svg {
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
   }
 }
 
 .hide {
   display: none;
+}
+
+.collapsed {
+  opacity: 0;
+  transform: scale(0, 0);
+  height: 0;
 }
 
 // container styles
@@ -494,16 +501,11 @@ h2 {
   left: 0;
   bottom: 0;
   right: 0;
-  transition: 0.3s all;
+  transition: all 0.3s;
   border: 2px solid $orange;
   border-bottom: none;
   opacity: 1;
   color: black;
-
-  &.collapsed {
-    opacity: 0;
-    transform: scale(0, 0);
-  }
 
   p {
     padding: 30px 15px 15px 15px;
@@ -533,6 +535,8 @@ h2 {
   }
 
   svg {
+    position: relative;
+    top: 1px;
     height: 15px;
     width: 15px;
     stroke: $orange;
@@ -578,10 +582,18 @@ h2 {
 .browser-address {
   background-color: $beige;
   border: 13px solid $grey;
-  border-left: 97px solid $grey;
   height: 50px;
   box-sizing: border-box;
-  border-radius: 10px 10px 0 0;
+}
+
+.browser-address-link {
+  text-decoration: none;
+  display: inline-block;
+  padding: 1px 0 0 5px;
+  color: $green;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .browser-window {
@@ -590,10 +602,54 @@ h2 {
   margin-bottom: 50px;
 }
 
+.browser-action-wrapper {
+  background-color: $light-grey;
+  height: 40px;
+  border-radius: 10px 10px 0 0;
+  position: relative;
+}
+
 .browser-actions {
+  padding: 15px;
+}
+
+.browser-tab-wrapper {
   position: absolute;
-    top: 18px;
-    left: 18px;
+  width: calc(100% - 80px);
+  top: 11px;
+  left: 80px;
+}
+
+.browser-tab {
+  box-sizing: border-box;
+  padding: 5px 0 0 5px;
+  position: relative;
+  width: 25%;
+  border-radius: 30px 30px 0 0;
+  height: 30px;
+  display: inline-block;
+  margin-left: -10px;
+  border: 1px solid $grey;
+  background-color: $light-grey;
+  z-index: 4;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: center;
+  color: black;
+
+  &:first-of-type {
+    margin-left: 0;
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &.active {
+    background-color: $grey;
+    z-index: 5;
+  }
 }
 
 .icon-browser-action {
@@ -615,17 +671,36 @@ h2 {
 
 .jobs {
   text-align: center;
-  max-width: 800px;
   margin: 0 auto;
 }
 
 .job-icon {
-  vertical-align: text-top;
-  width: 250px;
+  vertical-align: middle;
+  max-width: 250px;
   margin: 10px;
+  width: calc(25% - 20px);
+}
 
-  &:nth-of-type(1), &:nth-of-type(2) {
-    vertical-align: text-bottom;
+.job-info {
+  transition: all 0.2s;
+  padding: 0 20px;
+}
+
+.job-info-text {
+  text-align: left;
+  vertical-align: middle;
+  background-color: $light-grey;
+  padding: 20px;
+  border-radius: 5px;
+  width: calc(75% - 10px);
+  display: inline-block;
+  box-sizing: border-box;
+  color: black;
+  font-size: 1.3rem;
+
+  a {
+    text-decoration: none;
+    color: $green;
   }
 }
 
@@ -733,5 +808,30 @@ h2 {
       font-size: 1rem;
       padding: 10px;
     }
+  }
+
+  .job-info {
+    padding-top: 0;
+  }
+
+  .job-info-text {
+    font-size: 1rem;
+  }
+
+  .browser-window {
+    padding-top: 20px;
+  }
+
+  .browser-tab {
+    border-radius: 20px 20px 0 0;
+    width: 25%;
+  }
+
+  .job-icon {
+    width: 100%;
+  }
+
+  .job-icon, .job-info-text {
+    width: 100%;
   }
 }

@@ -62,13 +62,14 @@
 
 	Portfolio.prototype.attachEvents = function () {
 	    var icons = $('.js_app-icon'),
-	        close = $('.app-info-close'),
-	        navLinks = $('.js_nav-link');
+	        close = $('.js_app-info-close'),
+	        navLinks = $('.js_nav-link'),
+	        browserTabs = $('.js_browser-tab');
 
 	    icons.on('click', this.openAppInfo.bind(this));
 	    close.on('click', this.closeAppInfo.bind(this));
 	    navLinks.on('click', this.onNavLinkClick.bind(this));
-
+	    browserTabs.on('click', this.onBrowserTabClick.bind(this));
 	}
 
 	Portfolio.prototype.openAppInfo = function (evt) {
@@ -97,8 +98,23 @@
 	        targetSection = $('.' + icon.data('scroll'));
 
 	    $('html, body').animate({
-	        scrollTop: targetSection.offset().top - 50
+	        scrollTop: targetSection.offset().top - 55
 	    }, 300);
+	}
+
+	Portfolio.prototype.onBrowserTabClick = function (evt) {
+	    var tab = $(evt.currentTarget),
+	        addressText = tab.data('address'),
+	        browserTabs = $('.js_browser-tab'),
+	        browserAddress = $('.js_browser-address-link'),
+	        jobInfo = $('.js_job-info');
+
+	    browserTabs.removeClass('active');
+	    tab.addClass('active');
+	    browserAddress.attr('href', addressText);
+	    browserAddress.text(addressText);
+	    jobInfo.addClass('collapsed');
+	    jobInfo.filter('[data-job="' + tab.data('job') + '"]').removeClass('collapsed');
 	}
 
 	module.exports = Portfolio;
