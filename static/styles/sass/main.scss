@@ -1,10 +1,22 @@
 @font-face {
-    font-family: 'LatoWebThin';
+    font-family: 'Lato';
     src: url('../../fonts/Lato-Thin.eot'); /* IE9 Compat Modes */
     src: url('../../fonts/Lato-Thin.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
          url('../../fonts/Lato-Thin.woff2') format('woff2'), /* Modern Browsers */
          url('../../fonts/Lato-Thin.woff') format('woff'), /* Modern Browsers */
          url('../../fonts/Lato-Thin.ttf') format('truetype');
+    font-style: 300;
+    font-weight: 300;
+    text-rendering: optimizeLegibility;
+}
+
+@font-face {
+    font-family: 'Lato';
+    src: url('../../fonts/Lato-Regular.eot'); /* IE9 Compat Modes */
+    src: url('../../fonts/Lato-Regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+         url('../../fonts/Lato-Regular.woff2') format('woff2'), /* Modern Browsers */
+         url('../../fonts/Lato-Regular.woff') format('woff'), /* Modern Browsers */
+         url('../../fonts/Lato-Regular.ttf') format('truetype');
     font-style: normal;
     font-weight: normal;
     text-rendering: optimizeLegibility;
@@ -17,6 +29,7 @@ $green: #40CB9B;
 $orange: #F58F71;
 $grey: #D3D3D3;
 $light-grey: #F6F6F6;
+$transition-duration: 0.2s;
 
 // animations
 
@@ -184,12 +197,15 @@ $light-grey: #F6F6F6;
 
 body {
   margin: 0;
-  font-family: 'LatoWebThin', Helvetica, sans-serif;
+  font-family: 'Lato', Helvetica, sans-serif;
   overflow-x: hidden;
+  background-color: $pink;
+  font-weight: 300;
+  color: $beige;
 }
 
 body, h1, h2, h3, h4 {
-  color: $beige
+  font-weight: 300;
 }
 
 h2 {
@@ -233,7 +249,7 @@ h2 {
     padding: 15px;
 
       &:after {
-        transition: transform 0.2s;
+        transition: transform $transition-duration;
         content: " ";
         display: block;
         height: 1px;
@@ -273,7 +289,6 @@ h2 {
 .collapsed {
   opacity: 0;
   transform: scale(0, 0);
-  height: 0;
 }
 
 // container styles
@@ -462,7 +477,7 @@ h2 {
   }
 
   svg {
-    transition: transform 0.2s;
+    transition: transform $transition-duration;
     height: 50px;
     width: 50px;
   }
@@ -474,7 +489,7 @@ h2 {
 
     &.shake {
       animation-name: shake;
-      animation-duration: 0.2s;
+      animation-duration: $transition-duration;
     }
 }
 
@@ -501,7 +516,7 @@ h2 {
   left: 0;
   bottom: 0;
   right: 0;
-  transition: all 0.3s;
+  transition: all $transition-duration;
   border: 2px solid $orange;
   border-bottom: none;
   opacity: 1;
@@ -519,7 +534,7 @@ h2 {
 }
 
 .app-info-close {
-  transition: transform 0.2s;
+  transition: transform $transition-duration;
   position: absolute;
   text-decoration: none;
   right: 10px;
@@ -554,7 +569,7 @@ h2 {
   }
 
   img {
-    transition: transform 0.2s;
+    transition: transform $transition-duration;
     width: 201px;
   }
 
@@ -590,7 +605,6 @@ h2 {
   text-decoration: none;
   display: inline-block;
   padding: 1px 0 0 5px;
-  color: $green;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -682,8 +696,12 @@ h2 {
 }
 
 .job-info {
-  transition: all 0.2s;
+  transition: all $transition-duration;
   padding: 0 20px;
+
+  &.collapsed {
+    height: 0;
+  }
 }
 
 .job-info-text {
@@ -700,7 +718,6 @@ h2 {
 
   a {
     text-decoration: none;
-    color: $green;
   }
 }
 
@@ -713,6 +730,11 @@ h2 {
 @media (max-width: 600px) {
   h2 {
     font-size: 1.5rem;
+    margin-top: -20px;
+  }
+
+  body, h1, h2, h3, h4 {
+    font-weight: normal;
   }
 
   .clouds > * {
@@ -741,8 +763,12 @@ h2 {
   }
 
   .iphone-svg {
-    height: 480px;
-    top: 15px;
+    height: 550px;
+    top: 35px;
+  }
+
+  .personal-wrapper {
+    height: 600px
   }
 
   .logo {
@@ -777,14 +803,14 @@ h2 {
 
   .personal-apps {
     left: 0;
-      top: 70px;
-      width: 204px;
-      height: 352px;
+    top: 99px;
+    width: 234px;
+    height: 409px;
   }
 
   .app-icon {
     display: block;
-    width: 100px;
+    width: 120px;
     margin: 0 auto 30px;
 
     &:first-of-type {
@@ -793,7 +819,7 @@ h2 {
     }
 
       img {
-        width: 100px;
+        width: 120px;
       }
 
       h3 {
@@ -801,12 +827,16 @@ h2 {
       }
   }
 
+  .nav-list-item.right:after {
+    height: 2px;
+  }
+
   .app-info {
     border-bottom: 2px solid $orange;
 
     p {
-      font-size: 1rem;
-      padding: 10px;
+      font-size: 1.1rem;
+      padding: 20px 10px;
     }
   }
 
@@ -815,7 +845,7 @@ h2 {
   }
 
   .job-info-text {
-    font-size: 1rem;
+    font-size: 1.1rem;
   }
 
   .browser-window {
