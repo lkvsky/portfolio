@@ -94,6 +94,8 @@
 	}
 
 	Portfolio.prototype.onNavLinkClick = function (evt) {
+	    evt.preventDefault();
+
 	    var icon = $(evt.currentTarget),
 	        targetSection = $('.' + icon.data('scroll'));
 
