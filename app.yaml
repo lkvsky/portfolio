@@ -1,12 +1,4 @@
-application: lkvsky
-version: 2
-runtime: python27
-api_version: 1
-threadsafe: true
-
-libraries:
-- name: jinja2
-  version: latest
+runtime: python37
 
 handlers:
 - url: /static
@@ -17,4 +9,4 @@ handlers:
   upload: static/favicon.ico
 
 - url: .*
-  script: main.app
+  script: auto

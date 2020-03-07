@@ -63,4 +63,4 @@ Portfolio.prototype.onBrowserTabClick = function (evt) {
     jobInfo.filter('[data-job="' + tab.data('job') + '"]').removeClass('collapsed');
 }
 
-module.exports = Portfolio;
+export default Portfolio;

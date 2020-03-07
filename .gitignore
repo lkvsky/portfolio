@@ -3,3 +3,7 @@
 .sass-cache
 
 node_modules/
+
+.gcloudignore
+
+static/dist/
