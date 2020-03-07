@@ -1,5 +1,5 @@
-import Portfolio from './portfolio';
+import Portfolio from './portfolio'
 
-const portfoilioInstance = new Portfolio();
+const portfoilioInstance = new Portfolio()
 
-portfoilioInstance.init();
+portfoilioInstance.init()
